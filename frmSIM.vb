@@ -100,4 +100,41 @@
             frmAquaPilot.MyAquaPilot.MySurvey1.sm_wait(100)
         Next
     End Sub
+
+    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
+        Dim count As Integer
+
+        For count = 0 To 100 Step 5
+            frmAquaPilot.MyAquaPilot.SetMotorSpeed(1, count)
+            SpeedBar1.Value = count
+            lblSpeed.Text = Format(count, "000")
+            frmAquaPilot.MyAquaPilot.SetMotorSpeed(2, count)
+            SpeedBar2.Value = count
+            frmAquaPilot.MyAquaPilot.MySurvey1.sm_wait(100)
+        Next
+        For count = 100 To 0 Step -5
+            frmAquaPilot.MyAquaPilot.SetMotorSpeed(1, count)
+            SpeedBar1.Value = count
+            lblSpeed.Text = Format(count, "000")
+            frmAquaPilot.MyAquaPilot.SetMotorSpeed(2, count)
+            SpeedBar2.Value = count
+            frmAquaPilot.MyAquaPilot.MySurvey1.sm_wait(100)
+        Next
+        For count = 0 To 100 Step 5
+            frmAquaPilot.MyAquaPilot.SetMotorSpeed(1, -count)
+            SpeedBar1.Value = count
+            lblSpeed.Text = Format(count, "000")
+            frmAquaPilot.MyAquaPilot.SetMotorSpeed(2, -count)
+            SpeedBar2.Value = count
+            frmAquaPilot.MyAquaPilot.MySurvey1.sm_wait(100)
+        Next
+        For count = 100 To 0 Step -5
+            frmAquaPilot.MyAquaPilot.SetMotorSpeed(1, -count)
+            SpeedBar1.Value = count
+            lblSpeed.Text = Format(count, "000")
+            frmAquaPilot.MyAquaPilot.SetMotorSpeed(2, -count)
+            SpeedBar2.Value = count
+            frmAquaPilot.MyAquaPilot.MySurvey1.sm_wait(100)
+        Next
+    End Sub
 End Class
