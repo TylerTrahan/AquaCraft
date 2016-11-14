@@ -63,7 +63,7 @@ Public Class AquaPilot1
                         PortMotorSpeed = (spdZero + (speed * 5)) * 4
                     End If
                 Else
-                    PortMotorSpeed = spdZero
+                    PortMotorSpeed = spdZero * 4
                 End If
                 TrySetTarget(1, PortMotorSpeed)
                 SetMotorSpeed = PortMotorSpeed
@@ -78,7 +78,7 @@ Public Class AquaPilot1
                         StbdMotorSpeed = (spdZero + (speed * 5)) * 4
                     End If
                 Else
-                    StbdMotorSpeed = spdZero
+                    StbdMotorSpeed = spdZero * 4
                 End If
                 TrySetTarget(2, StbdMotorSpeed)
                 SetMotorSpeed = StbdMotorSpeed
@@ -106,7 +106,7 @@ Public Class AquaPilot1
     ''' </param>
     Sub TrySetTarget(ByVal channel As Integer, ByVal target As UInt16)
         Try
-            Using device As Usc = connectToDevice(channel) ' Find a device and temporarily connect.
+            Using device As Usc = connectToDevice() ' Find a device and temporarily connect.
                 device.setTarget(channel, target)
                 ' device.Dispose() is called automatically when the "Using" block ends,
                 ' allowing other functions and processes to use the device.
@@ -123,21 +123,21 @@ Public Class AquaPilot1
     ''' other processes or functions can connect to the device later.  The
     ''' "Using" statement can do this automatically for you.
     ''' </summary>
-    Function connectToDevice(deviceNum As Integer) As Usc
+    Function connectToDevice() As Usc
         ' Get a list of all connected devices of this type.
         Dim connectedDevices As List(Of DeviceListItem) = Usc.getConnectedDevices()
 
-        '        For Each dli As DeviceListItem In connectedDevices
-        ' If you have multiple devices connected and want to select a particular
-        ' device by serial number, you could simply add some code like this:
-        '    If dli.serialNumber <> "00012345" Then
-        '        Continue For
-        '    End If
-        '        Dim device As Usc = New Usc(dli)  ' Connect to the device.
-        '        Return device                     ' Return the device.
-        '        Next
-        Dim Returndevice As Usc = New Usc(connectedDevices.Item(deviceNum))  'Create a new USC object and initialize with a DeviceListItem
-        Return Returndevice   'Return the USC object from the line above
+        For Each dli As DeviceListItem In connectedDevices
+            ' If you have multiple devices connected and want to select a particular
+            ' device by serial number, you could simply add some code like this:
+            '    If dli.serialNumber <> "00012345" Then
+            '        Continue For
+            '    End If
+            Dim device As Usc = New Usc(dli)  ' Connect to the device.
+            Return device                     ' Return the device.
+        Next
+        'Dim Returndevice As Usc = New Usc(connectedDevices.Item(deviceNum))  'Create a new USC object and initialize with a DeviceListItem
+        'Return Returndevice   'Return the USC object from the line above
 
         Throw New Exception("Could not find device.  Make sure it is plugged in to " &
             "USB and check your Device Manager.")
