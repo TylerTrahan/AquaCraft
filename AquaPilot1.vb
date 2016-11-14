@@ -58,9 +58,9 @@ Public Class AquaPilot1
             Case 1
                 If speed <> 0 Then
                     If speed < 0 Then
-                        PortMotorSpeed = (spdRev + (Math.Abs(speed) * 500)) * 4
+                        PortMotorSpeed = (spdZero - (Math.Abs(speed) * 5)) * 4
                     ElseIf speed > 0 Then
-                        PortMotorSpeed = (spdFwd - (speed * 500)) * 4
+                        PortMotorSpeed = (spdZero + (speed * 5)) * 4
                     End If
                 Else
                     PortMotorSpeed = spdZero
@@ -73,9 +73,9 @@ Public Class AquaPilot1
             Case 2
                 If speed <> 0 Then
                     If speed < 0 Then
-                        StbdMotorSpeed = (spdRev + (Math.Abs(speed) * 500)) * 4
+                        StbdMotorSpeed = (spdZero - (Math.Abs(speed) * 5)) * 4
                     ElseIf speed > 0 Then
-                        StbdMotorSpeed = (spdFwd - (speed * 500)) * 4
+                        StbdMotorSpeed = (spdZero + (speed * 5)) * 4
                     End If
                 Else
                     StbdMotorSpeed = spdZero
