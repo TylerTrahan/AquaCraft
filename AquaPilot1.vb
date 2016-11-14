@@ -1,11 +1,9 @@
 ﻿Imports Pololu.UsbWrapper
-Imports Pololu.SimpleMotorController
 Imports Pololu.Usc
-Imports System
 Imports System.Windows.Forms
 Imports System.Text
 Imports System.ComponentModel
-
+'Imports AquaPilot1.Survey1
 
 Public Class AquaPilot1
     Public Structure PilotInfo
@@ -36,6 +34,8 @@ Public Class AquaPilot1
     Public CurrentBoatCourse As Double ' calculated course
     Public CurrentRudderAngle As Double
     Public CurrentCourseToWaypoint As Double
+    Public CurrentRoll As Double
+    Public CurrentPitch As Double
     Public OldRudderAngle As Double
     Public OldBoatCourse As Double
     Public OldBoatHeading As Double
@@ -127,17 +127,17 @@ Public Class AquaPilot1
         ' Get a list of all connected devices of this type.
         Dim connectedDevices As List(Of DeviceListItem) = Usc.getConnectedDevices()
 
-        For Each dli As DeviceListItem In connectedDevices
-            ' If you have multiple devices connected and want to select a particular
-            ' device by serial number, you could simply add some code like this:
-            '    If dli.serialNumber <> "00012345" Then
-            '        Continue For
-            '    End If
-            Dim device As Usc = New Usc(dli)  ' Connect to the device.
-            Return device                     ' Return the device.
-        Next
-        'Dim Returndevice As Usc = New Usc(connectedDevices.Item(deviceNum))  'Create a new USC object and initialize with a DeviceListItem
-        'Return Returndevice   'Return the USC object from the line above
+        '        For Each dli As DeviceListItem In connectedDevices
+        ' If you have multiple devices connected and want to select a particular
+        ' device by serial number, you could simply add some code like this:
+        '    If dli.serialNumber <> "00012345" Then
+        '        Continue For
+        '    End If
+        '        Dim device As Usc = New Usc(dli)  ' Connect to the device.
+        '        Return device                     ' Return the device.
+        '        Next
+        Dim Returndevice As Usc = New Usc(connectedDevices.Item(deviceNum))  'Create a new USC object and initialize with a DeviceListItem
+        Return Returndevice   'Return the USC object from the line above
 
         Throw New Exception("Could not find device.  Make sure it is plugged in to " &
             "USB and check your Device Manager.")
@@ -158,6 +158,13 @@ Public Class AquaPilot1
         Loop Until (exception Is Nothing)
         MessageBox.Show(stringBuilder.ToString(), "Motor Control", MessageBoxButtons.OK, MessageBoxIcon.Error)
     End Sub
+
+    Public Function ReadLineFile(lineFile As String, lineArray() As Survey1.DoubleXY) As Integer
+        ' need final definition from Tyler
+        Dim numPoints As Integer
+
+        ReadLineFile = numPoints
+    End Function
 
     Public Function TrackWaypointLL(pointLat As Double, pointLon As Double) As Integer
         Dim HeadingToWaypoint As Double
@@ -203,21 +210,34 @@ Public Class AquaPilot1
         TrackWaypointXY = 1
     End Function
 
-    Private Function SetRudderAngle(RAngle As Double) As Double
+    Public Function SetRudderAngle(RAngle As Double) As Double
         Dim rdrPort As Integer = 1000 ' may be 90 degrees, need to verify
         Dim rdrCent As Integer = 1500
         Dim rdrStbd As Integer = 2000
         Dim NewRudderAngle As Double
 
         ' come up with a scaleable factor ; relationship between heading and rudder angle
-        OldRudderAngle = CurrentRudderAngle
-        If CurrentRudderAngle + RAngle > 90 Then
-            NewRudderAngle = (90 * 5) + rdrCent
-        ElseIf CurrentRudderAngle + RAngle < -90 Then
-            NewRudderAngle = (-90 * 5) + rdrCent
+        '        OldRudderAngle = CurrentRudderAngle
+        '        If CurrentRudderAngle + RAngle > 90 Then
+        '        NewRudderAngle = (90 * 5) + rdrCent
+        '        ElseIf CurrentRudderAngle + RAngle < -90 Then
+        '        NewRudderAngle = (-90 * 5) + rdrCent
+        '        Else
+        '        NewRudderAngle = ((CurrentRudderAngle + RAngle) * 5) + rdrCent
+        '        End If
+        ' scale RAngle to fit...
+        If RAngle < 0 And RAngle > -90.1 Then
+            NewRudderAngle = rdrCent - (Math.Abs(RAngle) * 5.55)
+        ElseIf RAngle > 0 And RAngle < 90.1 Then
+            NewRudderAngle = (RAngle * 5.55) + rdrCent
+        ElseIf RAngle > 90 Then
+            NewRudderAngle = (90 * 5.55) + rdrCent
+        ElseIf RAngle < -90 Then
+            NewRudderAngle = rdrCent - (RAngle * 5.5)
         Else
-            NewRudderAngle = ((CurrentRudderAngle + RAngle) * 5) + rdrCent
+            NewRudderAngle = rdrCent
         End If
+
         ' 1.5ms is center position of the servo, target takes 1/4 microseconds, 1.5ms = 1.5*4000?
         ' full left rudder then would be 4000, full right rudder 8000, center rudder 6000
         TrySetTarget(0, CInt(NewRudderAngle * 4)) ' convert to 1/4 microseconds
@@ -267,7 +287,7 @@ Public Class AquaPilot1
         Dim CrossBearing As Double
         Dim TestBearing As Double
         Dim CrossTrack As Double
-        Dim MySurvey1 As New Survey1
+        'Dim MySurvey1 As New Survey1
 
         CrossTrack = MySurvey1.DistanceToLine(lArray(index).x, lArray(index).y, lArray(index + 1).x, lArray(index + 1).y, point.x, point.y)
         Call MySurvey1.Inverse(lArray(index).x, lArray(index).y, lArray(index + 1).x, lArray(index + 1).y)
@@ -307,7 +327,11 @@ Public Class AquaPilot1
 
     Public Function GetLineBearingXY(lineArray() As Survey1.DoubleXY, index As Integer) As Double
         Call MySurvey1.Inverse(lineArray(index).x, lineArray(index).y, lineArray(index + 1).x, lineArray(index + 1).y)
-        GetLineBearingXY = MySurvey1.InverseBearing ' return bearing
+        If MySurvey1.InverseBearing < 1 Then
+            GetLineBearingXY = 360
+        Else
+            GetLineBearingXY = MySurvey1.InverseBearing ' return bearing
+        End If
     End Function
 
     Public Function GetUTMZone(inLat As Double, inLon As Double) As String
