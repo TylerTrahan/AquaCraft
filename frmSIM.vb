@@ -75,25 +75,25 @@
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
         Dim count As Integer
         ' send commands to move rudders in each direction for predive test
-        For count = 0 To -90 Step -5
+        For count = 0 To -45 Step -5
             frmAquaPilot.MyAquaPilot.SetRudderAngle(count)
             RudderTest1.Value = count
             lblAngle.Text = Format(count, "Rudder Angle: 000")
             frmAquaPilot.MyAquaPilot.MySurvey1.sm_wait(100)
         Next
-        For count = -90 To 0 Step 5
+        For count = -45 To 0 Step 5
             frmAquaPilot.MyAquaPilot.SetRudderAngle(count)
             RudderTest1.Value = count
             lblAngle.Text = Format(count, "Rudder Angle: 000")
             frmAquaPilot.MyAquaPilot.MySurvey1.sm_wait(100)
         Next
-        For count = 0 To 90 Step 5
+        For count = 0 To 45 Step 5
             frmAquaPilot.MyAquaPilot.SetRudderAngle(count)
             RudderTest1.Value = count
             lblAngle.Text = Format(count, "Rudder Angle: 000")
             frmAquaPilot.MyAquaPilot.MySurvey1.sm_wait(100)
         Next
-        For count = 90 To 0 Step -5
+        For count = 45 To 0 Step -5
             frmAquaPilot.MyAquaPilot.SetRudderAngle(count)
             RudderTest1.Value = count
             lblAngle.Text = Format(count, "Rudder Angle: 000")
@@ -107,34 +107,50 @@
         For count = 0 To 100 Step 5
             frmAquaPilot.MyAquaPilot.SetMotorSpeed(1, count)
             SpeedBar1.Value = count
+            SpeedBar1.Update()
             lblSpeed.Text = Format(count, "000")
+            lblSpeed.Update()
             frmAquaPilot.MyAquaPilot.MySurvey1.sm_wait(100)
             frmAquaPilot.MyAquaPilot.SetMotorSpeed(2, count)
             SpeedBar2.Value = count
+            SpeedBar2.Update()
+            frmAquaPilot.MyAquaPilot.MySurvey1.sm_wait(100)
         Next
         For count = 100 To 0 Step -5
             frmAquaPilot.MyAquaPilot.SetMotorSpeed(1, count)
             SpeedBar1.Value = count
+            SpeedBar1.Update()
             lblSpeed.Text = Format(count, "000")
+            lblSpeed.Update()
             frmAquaPilot.MyAquaPilot.MySurvey1.sm_wait(100)
             frmAquaPilot.MyAquaPilot.SetMotorSpeed(2, count)
             SpeedBar2.Value = count
+            SpeedBar2.Update()
+            frmAquaPilot.MyAquaPilot.MySurvey1.sm_wait(100)
         Next
         For count = 0 To 100 Step 5
             frmAquaPilot.MyAquaPilot.SetMotorSpeed(1, -count)
             SpeedBar1.Value = count
-            lblSpeed.Text = Format(count, "000")
+            SpeedBar1.Update()
+            lblSpeed.Text = Format(-count, "000")
+            lblSpeed.Update()
             frmAquaPilot.MyAquaPilot.MySurvey1.sm_wait(100)
             frmAquaPilot.MyAquaPilot.SetMotorSpeed(2, -count)
             SpeedBar2.Value = count
+            SpeedBar2.Update()
+            frmAquaPilot.MyAquaPilot.MySurvey1.sm_wait(100)
         Next
         For count = 100 To 0 Step -5
             frmAquaPilot.MyAquaPilot.SetMotorSpeed(1, -count)
             SpeedBar1.Value = count
-            lblSpeed.Text = Format(count, "000")
+            SpeedBar1.Update()
+            lblSpeed.Text = Format(-count, "000")
+            lblSpeed.Update()
             frmAquaPilot.MyAquaPilot.MySurvey1.sm_wait(100)
             frmAquaPilot.MyAquaPilot.SetMotorSpeed(2, -count)
             SpeedBar2.Value = count
+            SpeedBar2.Update()
+            frmAquaPilot.MyAquaPilot.MySurvey1.sm_wait(100)
         Next
     End Sub
 End Class
