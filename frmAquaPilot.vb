@@ -210,27 +210,6 @@ Public Class frmAquaPilot
 
     Private Sub frmAquaPilot_ResizeEnd(sender As Object, e As EventArgs) Handles Me.ResizeEnd
         Me.Width = Me.Height * frmHWration
-
-    End Sub
-
-    Private Sub AvFader1_Load(sender As Object, e As EventArgs) Handles AvFader1.Load
-
-    End Sub
-
-    Private Sub AvFader1_ValueChanged(sender As Object, e As EventArgs) Handles AvFader1.ValueChanged
-        lblRgain.Text = AvFader1.Value
-    End Sub
-
-    Private Sub btnGPS_Click(sender As Object, e As EventArgs) Handles btnGPS.Click
-        frmGPS.Show()
-    End Sub
-
-    Private Sub btnGYRO_Click(sender As Object, e As EventArgs) Handles btnGYRO.Click
-        frmGYRO.Show()
-    End Sub
-
-    Private Sub btnDEPTH_Click(sender As Object, e As EventArgs) Handles btnDEPTH.Click
-        frmDEPTH.Show()
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
@@ -282,4 +261,5 @@ Public Class frmAquaPilot
         End If
         End
     End Sub
+
 End Class
