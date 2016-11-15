@@ -188,7 +188,7 @@ Public Class frmAquaPilot
         MyAquaPilot.MySurvey1.Inverse(currentBoatXY.x, currentBoatXY.y, MyAquaPilot.WaypointX, MyAquaPilot.WaypointY)
         MyAquaPilot.CurrentCourseToWaypoint = MyAquaPilot.MySurvey1.InverseBearing
         lineBearing = MyAquaPilot.GetLineBearingXY(slineArray, lineIndex)
-        lblHeading.Text = Format(MyAquaPilot.CurrentBoatHeading, "000.0 deg")
+        'lblHeading.Text = Format(MyAquaPilot.CurrentBoatHeading, "000.0 deg")
         HeadingGauge.Value = CSng(Format(MyAquaPilot.CurrentBoatHeading, "000.00"))
 
         ' update waypoint and velocity and course...
