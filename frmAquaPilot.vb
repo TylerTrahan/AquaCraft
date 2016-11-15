@@ -54,8 +54,8 @@ Public Class frmAquaPilot
         slineArray(1).x = 600500
         slineArray(1).y = 1300500
         lineIndex = 0
-        currentBoatXY.x = 600400
-        currentBoatXY.y = 1300050
+        MyAquaPilot.CurrentBoatX = 600400
+        MyAquaPilot.CurrentBoatY = 1300050
         MyAquaPilot.WaypointX = 600100
         MyAquaPilot.WaypointY = 1300100
         InitializePorts()
