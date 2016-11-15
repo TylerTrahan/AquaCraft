@@ -353,7 +353,7 @@ Partial Class frmSIM
         Me.frmRudderTest.Controls.Add(Me.lblAngle)
         Me.frmRudderTest.Controls.Add(Me.Button5)
         Me.frmRudderTest.Controls.Add(Me.RudderTest1)
-        Me.frmRudderTest.Location = New System.Drawing.Point(369, 9)
+        Me.frmRudderTest.Location = New System.Drawing.Point(398, 9)
         Me.frmRudderTest.Name = "frmRudderTest"
         Me.frmRudderTest.Size = New System.Drawing.Size(276, 165)
         Me.frmRudderTest.TabIndex = 34
@@ -408,7 +408,7 @@ Partial Class frmSIM
         Me.GroupBox1.Controls.Add(Me.Label12)
         Me.GroupBox1.Controls.Add(Me.SpeedBar2)
         Me.GroupBox1.Controls.Add(Me.SpeedBar1)
-        Me.GroupBox1.Location = New System.Drawing.Point(369, 180)
+        Me.GroupBox1.Location = New System.Drawing.Point(398, 180)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(276, 162)
         Me.GroupBox1.TabIndex = 3
