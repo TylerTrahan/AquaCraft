@@ -50,20 +50,20 @@ Public Class frmAquaPilot
         'cboBaudRate.Text = "9600"
         ReDim MyAquaPilot.MissionPlanXY(2)
         MyAquaPilot.MissionPlanXY(0).x = 600400
-        MyAquaPilot.MissionPlanXY(0).y = 1300000
-        MyAquaPilot.MissionPlanXY(1).x = 600500
+        MyAquaPilot.MissionPlanXY(0).y = 1290000
+        MyAquaPilot.MissionPlanXY(1).x = 600400
         MyAquaPilot.MissionPlanXY(1).y = 1300500
         MyAquaPilot.MissionLine = 0
         ReDim slineArray(2)
         slineArray(0).x = 600400
-        slineArray(0).y = 1300000
-        slineArray(1).x = 600500
+        slineArray(0).y = 1290000
+        slineArray(1).x = 600400
         slineArray(1).y = 1300500
         lineIndex = 0
         MyAquaPilot.CurrentBoatX = 600400
         MyAquaPilot.CurrentBoatY = 1300050
-        MyAquaPilot.WaypointX = 600100
-        MyAquaPilot.WaypointY = 1300100
+        'MyAquaPilot.WaypointX = 600100
+        'MyAquaPilot.WaypointY = 1300100
         InitializePorts()
         Timer1.Enabled = True
     End Sub
@@ -199,7 +199,7 @@ Public Class frmAquaPilot
         HeadingGauge.Value = CSng(Format(MyAquaPilot.CurrentBoatHeading, "000.00"))
 
         ' update waypoint and velocity and course...
-        tempPoint = MyAquaPilot.MakeWaypointXY()
+        tempPoint = MyAquaPilot.MakeWaypointXY(currentBoatXY)
         MyAquaPilot.WaypointX = tempPoint.x
         MyAquaPilot.WaypointY = tempPoint.y
     End Sub
