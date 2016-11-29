@@ -261,7 +261,7 @@ Public Class AquaPilot1
         CrossTrackDist = GetCrossTrackXY(MissionPlanXY, MissionLine, CurrentLocation)
         If CrossTrackDist > 0 Then
             If CrossTrackDist > OldCrossTrackDist Then
-
+                ' calc some percentage to control the bearing change
             End If
             NewBearing = NewBearing - 5
         ElseIf CrossTrackDist < 0 Then
