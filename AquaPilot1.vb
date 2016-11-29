@@ -251,24 +251,20 @@ Public Class AquaPilot1
 
     End Function
 
-    Public Function MakeWaypointXY() As Survey1.DoubleXY
+    Public Function MakeWaypointXY(CurrentLocation As Survey1.DoubleXY) As Survey1.DoubleXY
         Static NewBearing As Double
         Static CrossTrackDist As Double
         Static OldCrossTrackDist As Double
-        Dim CurrentLocation As Survey1.DoubleXY
-
-        CurrentLocation.x = CurrentBoatX
-        CurrentLocation.y = CurrentBoatY
 
         CrossTrackDist = GetCrossTrackXY(MissionPlanXY, MissionLine, CurrentLocation)
         If CrossTrackDist > 0 And CrossTrackDist > OldCrossTrackDist Then
-            NewBearing = NewBearing - (CrossTrackDist - OldCrossTrackDist)
+            NewBearing = NewBearing - 5 '(CrossTrackDist - OldCrossTrackDist)
         ElseIf CrossTrackDist > 0 And CrossTrackDist < OldCrossTrackDist Then
-            NewBearing = NewBearing - (OldCrossTrackDist - CrossTrackDist)
+            NewBearing = NewBearing - 5 '(OldCrossTrackDist - CrossTrackDist)
         ElseIf CrossTrackDist < 0 And CrossTrackDist < OldCrossTrackDist Then
-            NewBearing = NewBearing + (OldCrossTrackDist - CrossTrackDist)
+            NewBearing = NewBearing + 5 '(OldCrossTrackDist - CrossTrackDist)
         ElseIf CrossTrackDist < 0 And CrossTrackDist > OldCrossTrackDist Then
-            NewBearing = NewBearing + (CrossTrackDist - OldCrossTrackDist)
+            NewBearing = NewBearing + 5 '(CrossTrackDist - OldCrossTrackDist)
         End If
         MySurvey1.Traverse(CurrentBoatX, CurrentBoatY, NewBearing, 100)
 
