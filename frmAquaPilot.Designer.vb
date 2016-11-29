@@ -74,7 +74,7 @@ Partial Class frmAquaPilot
         Me.HeadingGauge.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.HeadingGauge.ForeColor = System.Drawing.Color.Red
         Me.HeadingGauge.FromAngle = 270.0!
-        Me.HeadingGauge.Glossiness = 80.0!
+        Me.HeadingGauge.Glossiness = 100.0!
         Me.HeadingGauge.Location = New System.Drawing.Point(3, 1)
         Me.HeadingGauge.Margin = New System.Windows.Forms.Padding(4)
         Me.HeadingGauge.MaxValue = 360.0!
@@ -97,7 +97,7 @@ Partial Class frmAquaPilot
         Me.CourseGauge.DialText = "Course"
         Me.CourseGauge.ForeColor = System.Drawing.Color.Red
         Me.CourseGauge.FromAngle = 270.0!
-        Me.CourseGauge.Glossiness = 80.0!
+        Me.CourseGauge.Glossiness = 100.0!
         Me.CourseGauge.Location = New System.Drawing.Point(134, 2)
         Me.CourseGauge.MaxValue = 360.0!
         Me.CourseGauge.MinValue = 0!
@@ -119,14 +119,14 @@ Partial Class frmAquaPilot
         Me.RudderGauge.DialText = "Rudder Angle"
         Me.RudderGauge.DisplayTop = True
         Me.RudderGauge.FromAngle = 180.0!
-        Me.RudderGauge.Glossiness = 80.0!
+        Me.RudderGauge.Glossiness = 100.0!
         Me.RudderGauge.Location = New System.Drawing.Point(3, 127)
         Me.RudderGauge.MaxValue = 90.0!
         Me.RudderGauge.MinValue = -90.0!
         Me.RudderGauge.Name = "RudderGauge"
         Me.RudderGauge.NoOfDivisions = 6
         Me.RudderGauge.NoOfSubDivisions = 2
-        Me.RudderGauge.RecommendedValue = 0!
+        Me.RudderGauge.RecommendedValue = 360.0!
         Me.RudderGauge.Size = New System.Drawing.Size(136, 136)
         Me.RudderGauge.TabIndex = 4
         Me.RudderGauge.ThresholdPercent = 0!
@@ -178,23 +178,21 @@ Partial Class frmAquaPilot
         '
         'lblCrossTrack1
         '
-        Me.lblCrossTrack1.AutoSize = True
-        Me.lblCrossTrack1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblCrossTrack1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblCrossTrack1.ForeColor = System.Drawing.Color.Red
         Me.lblCrossTrack1.Location = New System.Drawing.Point(133, 0)
         Me.lblCrossTrack1.Name = "lblCrossTrack1"
-        Me.lblCrossTrack1.Size = New System.Drawing.Size(79, 24)
+        Me.lblCrossTrack1.Size = New System.Drawing.Size(69, 20)
         Me.lblCrossTrack1.TabIndex = 19
         Me.lblCrossTrack1.Text = "-23.5 m"
         '
         'lblCrossTrack2
         '
-        Me.lblCrossTrack2.AutoSize = True
-        Me.lblCrossTrack2.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblCrossTrack2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblCrossTrack2.ForeColor = System.Drawing.Color.Lime
         Me.lblCrossTrack2.Location = New System.Drawing.Point(428, 0)
         Me.lblCrossTrack2.Name = "lblCrossTrack2"
-        Me.lblCrossTrack2.Size = New System.Drawing.Size(72, 24)
+        Me.lblCrossTrack2.Size = New System.Drawing.Size(69, 20)
         Me.lblCrossTrack2.TabIndex = 20
         Me.lblCrossTrack2.Text = "23.5 m"
         '
@@ -240,7 +238,6 @@ Partial Class frmAquaPilot
         Me.Name = "frmAquaPilot"
         Me.Text = "Aqua Pilot"
         Me.Panel2.ResumeLayout(False)
-        Me.Panel2.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
