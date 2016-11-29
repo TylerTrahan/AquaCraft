@@ -20,17 +20,20 @@
         HScrollBar3.Value = CInt(frmAquaPilot.lineBearing)
         lBearing.Text = HScrollBar3.Value
         boatHeading.Text = frmAquaPilot.MyAquaPilot.CurrentBoatHeading
-
+        wptX.Text = Format(frmAquaPilot.MyAquaPilot.WaypointX, "0.00")
+        wptY.Text = Format(frmAquaPilot.MyAquaPilot.WaypointY, "0.00")
 
 
     End Sub
 
     Private Sub boatX_TextChanged(sender As Object, e As EventArgs) Handles boatX.TextChanged
         frmAquaPilot.currentBoatXY.x = CDbl(boatX.Text)
+        frmAquaPilot.MyAquaPilot.CurrentBoatX = CDbl(boatX.Text)
     End Sub
 
     Private Sub boatY_TextChanged(sender As Object, e As EventArgs) Handles boatY.TextChanged
         frmAquaPilot.currentBoatXY.y = CDbl(boatY.Text)
+        frmAquaPilot.MyAquaPilot.CurrentBoatY = CDbl(boatY.Text)
     End Sub
 
     Private Sub wptX_TextChanged(sender As Object, e As EventArgs) Handles wptX.TextChanged
