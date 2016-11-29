@@ -48,6 +48,12 @@ Public Class frmAquaPilot
         'cboComPort.Items.AddRange(Portnames)
         'cboComPort.Text = Portnames(0)
         'cboBaudRate.Text = "9600"
+        ReDim MyAquaPilot.MissionPlanXY(2)
+        MyAquaPilot.MissionPlanXY(0).x = 600400
+        MyAquaPilot.MissionPlanXY(0).y = 1300000
+        MyAquaPilot.MissionPlanXY(1).x = 600500
+        MyAquaPilot.MissionPlanXY(1).y = 1300500
+        MyAquaPilot.MissionLine = 0
         ReDim slineArray(2)
         slineArray(0).x = 600400
         slineArray(0).y = 1300000
@@ -67,8 +73,8 @@ Public Class frmAquaPilot
 
         '        With GPSComm
         '        .ParityReplace = &H3B                    ' replace ";" when parity error occurs 
-        '        .PortName = frmGPS.btnCom.Text
-        '        .BaudRate = frmGPS.btnBaud.Text
+        '        .PortName = "COM3"
+        '        .BaudRate = "9600"
         '        .Parity = IO.Ports.Parity.None
         '        .DataBits = 8
         '        .StopBits = IO.Ports.StopBits.One
@@ -147,6 +153,7 @@ Public Class frmAquaPilot
     End Sub
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        Dim tempPoint As Survey1.DoubleXY
 
         oldXTrack = currentXTrack
         currentXTrack = MyAquaPilot.GetCrossTrackXY(slineArray, lineIndex, currentBoatXY)
@@ -192,7 +199,9 @@ Public Class frmAquaPilot
         HeadingGauge.Value = CSng(Format(MyAquaPilot.CurrentBoatHeading, "000.00"))
 
         ' update waypoint and velocity and course...
-
+        tempPoint = MyAquaPilot.MakeWaypointXY()
+        MyAquaPilot.WaypointX = tempPoint.x
+        MyAquaPilot.WaypointY = tempPoint.y
     End Sub
 
     Private Sub frmAquaPilot_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
