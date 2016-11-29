@@ -255,7 +255,9 @@ Public Class AquaPilot1
         Static NewBearing As Double
         Static CrossTrackDist As Double
         Static OldCrossTrackDist As Double
-
+        If NewBearing = Nothing Then
+            NewBearing = frmAquaPilot.lineBearing
+        End If
         CrossTrackDist = GetCrossTrackXY(MissionPlanXY, MissionLine, CurrentLocation)
         If CrossTrackDist > 0 And CrossTrackDist > OldCrossTrackDist Then
             NewBearing = NewBearing - 5 '(CrossTrackDist - OldCrossTrackDist)
