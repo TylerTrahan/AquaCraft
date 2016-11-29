@@ -259,14 +259,16 @@ Public Class AquaPilot1
             NewBearing = frmAquaPilot.lineBearing
         End If
         CrossTrackDist = GetCrossTrackXY(MissionPlanXY, MissionLine, CurrentLocation)
-        If CrossTrackDist > 0 And CrossTrackDist > OldCrossTrackDist Then
-            NewBearing = NewBearing - 5 '(CrossTrackDist - OldCrossTrackDist)
-        ElseIf CrossTrackDist > 0 And CrossTrackDist < OldCrossTrackDist Then
-            NewBearing = NewBearing - 5 '(OldCrossTrackDist - CrossTrackDist)
-        ElseIf CrossTrackDist < 0 And CrossTrackDist < OldCrossTrackDist Then
-            NewBearing = NewBearing + 5 '(OldCrossTrackDist - CrossTrackDist)
-        ElseIf CrossTrackDist < 0 And CrossTrackDist > OldCrossTrackDist Then
-            NewBearing = NewBearing + 5 '(CrossTrackDist - OldCrossTrackDist)
+        If CrossTrackDist > 0 Then
+            If CrossTrackDist > OldCrossTrackDist Then
+
+            End If
+            NewBearing = NewBearing - 5
+        ElseIf CrossTrackDist < 0 Then
+            If CrossTrackDist < OldCrossTrackDist Then
+
+            End If
+            NewBearing = NewBearing + 5
         End If
         MySurvey1.Traverse(CurrentBoatX, CurrentBoatY, NewBearing, 100)
 
