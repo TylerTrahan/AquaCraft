@@ -55,17 +55,17 @@ Partial Class frmSIM
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.frmRudderTest = New System.Windows.Forms.GroupBox()
-        Me.RudderTest1 = New AquaControls.AquaGauge()
-        Me.Button5 = New System.Windows.Forms.Button()
         Me.lblAngle = New System.Windows.Forms.Label()
+        Me.Button5 = New System.Windows.Forms.Button()
+        Me.RudderTest1 = New AquaControls.AquaGauge()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.SpeedBar1 = New VerticalProgressBar.VerticalProgressBar()
-        Me.SpeedBar2 = New VerticalProgressBar.VerticalProgressBar()
-        Me.Label12 = New System.Windows.Forms.Label()
-        Me.Label13 = New System.Windows.Forms.Label()
-        Me.Button6 = New System.Windows.Forms.Button()
-        Me.Label14 = New System.Windows.Forms.Label()
         Me.lblSpeed = New System.Windows.Forms.Label()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.Button6 = New System.Windows.Forms.Button()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.SpeedBar2 = New VerticalProgressBar.VerticalProgressBar()
+        Me.SpeedBar1 = New VerticalProgressBar.VerticalProgressBar()
         Me.frmRudderTest.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
@@ -132,7 +132,7 @@ Partial Class frmSIM
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(235, 28)
+        Me.Label3.Location = New System.Drawing.Point(211, 47)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(72, 13)
         Me.Label3.TabIndex = 6
@@ -141,7 +141,7 @@ Partial Class frmSIM
         'rAngle
         '
         Me.rAngle.AutoSize = True
-        Me.rAngle.Location = New System.Drawing.Point(328, 28)
+        Me.rAngle.Location = New System.Drawing.Point(304, 47)
         Me.rAngle.Name = "rAngle"
         Me.rAngle.Size = New System.Drawing.Size(19, 13)
         Me.rAngle.TabIndex = 7
@@ -150,7 +150,7 @@ Partial Class frmSIM
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(235, 48)
+        Me.Label4.Location = New System.Drawing.Point(211, 67)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(64, 13)
         Me.Label4.TabIndex = 8
@@ -159,7 +159,7 @@ Partial Class frmSIM
         'xTrack
         '
         Me.xTrack.AutoSize = True
-        Me.xTrack.Location = New System.Drawing.Point(328, 48)
+        Me.xTrack.Location = New System.Drawing.Point(304, 67)
         Me.xTrack.Name = "xTrack"
         Me.xTrack.Size = New System.Drawing.Size(25, 13)
         Me.xTrack.TabIndex = 9
@@ -268,7 +268,7 @@ Partial Class frmSIM
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(235, 9)
+        Me.Label10.Location = New System.Drawing.Point(211, 28)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(75, 13)
         Me.Label10.TabIndex = 25
@@ -277,7 +277,7 @@ Partial Class frmSIM
         'wCourse
         '
         Me.wCourse.AutoSize = True
-        Me.wCourse.Location = New System.Drawing.Point(328, 9)
+        Me.wCourse.Location = New System.Drawing.Point(304, 28)
         Me.wCourse.Name = "wCourse"
         Me.wCourse.Size = New System.Drawing.Size(25, 13)
         Me.wCourse.TabIndex = 26
@@ -297,7 +297,7 @@ Partial Class frmSIM
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(235, 68)
+        Me.Label11.Location = New System.Drawing.Point(211, 87)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(72, 13)
         Me.Label11.TabIndex = 28
@@ -306,7 +306,7 @@ Partial Class frmSIM
         'boatHeading
         '
         Me.boatHeading.AutoSize = True
-        Me.boatHeading.Location = New System.Drawing.Point(328, 68)
+        Me.boatHeading.Location = New System.Drawing.Point(304, 87)
         Me.boatHeading.Name = "boatHeading"
         Me.boatHeading.Size = New System.Drawing.Size(25, 13)
         Me.boatHeading.TabIndex = 29
@@ -360,6 +360,25 @@ Partial Class frmSIM
         Me.frmRudderTest.TabStop = False
         Me.frmRudderTest.Text = "Rudder Test"
         '
+        'lblAngle
+        '
+        Me.lblAngle.AutoSize = True
+        Me.lblAngle.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblAngle.Location = New System.Drawing.Point(6, 110)
+        Me.lblAngle.Name = "lblAngle"
+        Me.lblAngle.Size = New System.Drawing.Size(113, 13)
+        Me.lblAngle.TabIndex = 2
+        Me.lblAngle.Text = "Rudder Angle: 000"
+        '
+        'Button5
+        '
+        Me.Button5.Location = New System.Drawing.Point(24, 39)
+        Me.Button5.Name = "Button5"
+        Me.Button5.Size = New System.Drawing.Size(79, 54)
+        Me.Button5.TabIndex = 1
+        Me.Button5.Text = "Test Rudders"
+        Me.Button5.UseVisualStyleBackColor = True
+        '
         'RudderTest1
         '
         Me.RudderTest1.BackColor = System.Drawing.Color.Transparent
@@ -373,31 +392,12 @@ Partial Class frmSIM
         Me.RudderTest1.Name = "RudderTest1"
         Me.RudderTest1.NoOfDivisions = 6
         Me.RudderTest1.NoOfSubDivisions = 2
-        Me.RudderTest1.RecommendedValue = 90.0!
+        Me.RudderTest1.RecommendedValue = 0!
         Me.RudderTest1.Size = New System.Drawing.Size(146, 146)
         Me.RudderTest1.TabIndex = 0
         Me.RudderTest1.ThresholdPercent = 0!
         Me.RudderTest1.ToAngle = 0!
         Me.RudderTest1.Value = 0!
-        '
-        'Button5
-        '
-        Me.Button5.Location = New System.Drawing.Point(24, 39)
-        Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(79, 54)
-        Me.Button5.TabIndex = 1
-        Me.Button5.Text = "Test Rudders"
-        Me.Button5.UseVisualStyleBackColor = True
-        '
-        'lblAngle
-        '
-        Me.lblAngle.AutoSize = True
-        Me.lblAngle.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblAngle.Location = New System.Drawing.Point(6, 110)
-        Me.lblAngle.Name = "lblAngle"
-        Me.lblAngle.Size = New System.Drawing.Size(113, 13)
-        Me.lblAngle.TabIndex = 2
-        Me.lblAngle.Text = "Rudder Angle: 000"
         '
         'GroupBox1
         '
@@ -415,19 +415,52 @@ Partial Class frmSIM
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Motor Test"
         '
-        'SpeedBar1
+        'lblSpeed
         '
-        Me.SpeedBar1.BorderStyle = VerticalProgressBar.BorderStyles.Classic
-        Me.SpeedBar1.Color = System.Drawing.Color.Red
-        Me.SpeedBar1.Location = New System.Drawing.Point(24, 47)
-        Me.SpeedBar1.Maximum = 100
-        Me.SpeedBar1.Minimum = 0
-        Me.SpeedBar1.Name = "SpeedBar1"
-        Me.SpeedBar1.Size = New System.Drawing.Size(13, 98)
-        Me.SpeedBar1.Step = 5
-        Me.SpeedBar1.Style = VerticalProgressBar.Styles.Solid
-        Me.SpeedBar1.TabIndex = 36
-        Me.SpeedBar1.Value = 0
+        Me.lblSpeed.AutoSize = True
+        Me.lblSpeed.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSpeed.Location = New System.Drawing.Point(156, 110)
+        Me.lblSpeed.Name = "lblSpeed"
+        Me.lblSpeed.Size = New System.Drawing.Size(28, 13)
+        Me.lblSpeed.TabIndex = 42
+        Me.lblSpeed.Text = "100"
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label14.Location = New System.Drawing.Point(125, 86)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(83, 13)
+        Me.Label14.TabIndex = 41
+        Me.Label14.Text = "Motor Speed:"
+        '
+        'Button6
+        '
+        Me.Button6.Location = New System.Drawing.Point(133, 25)
+        Me.Button6.Name = "Button6"
+        Me.Button6.Size = New System.Drawing.Size(75, 52)
+        Me.Button6.TabIndex = 40
+        Me.Button6.Text = "Test Motors"
+        Me.Button6.UseVisualStyleBackColor = True
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Location = New System.Drawing.Point(50, 25)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(29, 13)
+        Me.Label13.TabIndex = 39
+        Me.Label13.Text = "Stbd"
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(18, 25)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(26, 13)
+        Me.Label12.TabIndex = 38
+        Me.Label12.Text = "Port"
         '
         'SpeedBar2
         '
@@ -444,52 +477,19 @@ Partial Class frmSIM
         Me.SpeedBar2.TabIndex = 37
         Me.SpeedBar2.Value = 0
         '
-        'Label12
+        'SpeedBar1
         '
-        Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(18, 25)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(26, 13)
-        Me.Label12.TabIndex = 38
-        Me.Label12.Text = "Port"
-        '
-        'Label13
-        '
-        Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(50, 25)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(29, 13)
-        Me.Label13.TabIndex = 39
-        Me.Label13.Text = "Stbd"
-        '
-        'Button6
-        '
-        Me.Button6.Location = New System.Drawing.Point(133, 25)
-        Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(75, 52)
-        Me.Button6.TabIndex = 40
-        Me.Button6.Text = "Test Motors"
-        Me.Button6.UseVisualStyleBackColor = True
-        '
-        'Label14
-        '
-        Me.Label14.AutoSize = True
-        Me.Label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label14.Location = New System.Drawing.Point(125, 86)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(83, 13)
-        Me.Label14.TabIndex = 41
-        Me.Label14.Text = "Motor Speed:"
-        '
-        'lblSpeed
-        '
-        Me.lblSpeed.AutoSize = True
-        Me.lblSpeed.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblSpeed.Location = New System.Drawing.Point(156, 110)
-        Me.lblSpeed.Name = "lblSpeed"
-        Me.lblSpeed.Size = New System.Drawing.Size(28, 13)
-        Me.lblSpeed.TabIndex = 42
-        Me.lblSpeed.Text = "100"
+        Me.SpeedBar1.BorderStyle = VerticalProgressBar.BorderStyles.Classic
+        Me.SpeedBar1.Color = System.Drawing.Color.Red
+        Me.SpeedBar1.Location = New System.Drawing.Point(24, 47)
+        Me.SpeedBar1.Maximum = 100
+        Me.SpeedBar1.Minimum = 0
+        Me.SpeedBar1.Name = "SpeedBar1"
+        Me.SpeedBar1.Size = New System.Drawing.Size(13, 98)
+        Me.SpeedBar1.Step = 5
+        Me.SpeedBar1.Style = VerticalProgressBar.Styles.Solid
+        Me.SpeedBar1.TabIndex = 36
+        Me.SpeedBar1.Value = 0
         '
         'frmSIM
         '

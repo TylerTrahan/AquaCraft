@@ -156,4 +156,14 @@
             frmAquaPilot.MyAquaPilot.MySurvey1.sm_wait(100)
         Next
     End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        boatY.Text = CInt(Val(boatY.Text) + 5)
+        frmAquaPilot.currentBoatXY.y = Val(boatY.Text)
+    End Sub
+
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        boatY.Text = CInt(Val(boatY.Text) - 5)
+        frmAquaPilot.currentBoatXY.y = Val(boatY.Text)
+    End Sub
 End Class
