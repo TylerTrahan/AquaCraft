@@ -273,19 +273,19 @@ Public Class AquaPilot1
         If CrossTrackDist > 0 Then
             If CrossTrackDist > OldCrossTrackDist Then
                 ' calc some percentage to control the bearing change
-                If CrossTrackDist > 100 Then
+                If CrossTrackDist > 90 Then
                     NewBearing = frmAquaPilot.lineBearing - 90
                 Else
-
+                    NewBearing = frmAquaPilot.lineBearing - CrossTrackDist
                 End If
             End If
             'NewBearing = NewBearing - 5
         ElseIf CrossTrackDist < 0 Then
             If CrossTrackDist < OldCrossTrackDist Then
-                If CrossTrackDist < -100 Then
+                If CrossTrackDist < -90 Then
                     NewBearing = frmAquaPilot.lineBearing + 90
                 Else
-
+                    NewBearing = frmAquaPilot.lineBearing - CrossTrackDist
                 End If
             End If
             'NewBearing = NewBearing + 5
