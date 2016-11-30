@@ -255,10 +255,19 @@ Public Class AquaPilot1
         Static NewBearing As Double
         Static CrossTrackDist As Double
         Static OldCrossTrackDist As Double
+        Dim LinePoint As Survey1.DoubleXY
+        Dim DistPoint As Double
+        Dim BrngPoint As Double
+
         If NewBearing = Nothing Then
             NewBearing = frmAquaPilot.lineBearing
         End If
         CrossTrackDist = GetCrossTrackXY(MissionPlanXY, MissionLine, CurrentLocation)
+        DistPoint = MySurvey1.ClosestPoint(MissionPlanXY(MissionLine), MissionPlanXY(MissionLine + 1), CurrentLocation, LinePoint)
+        Call MySurvey1.Inverse(CurrentLocation.x, CurrentLocation.y, LinePoint.x, LinePoint.y)
+        BrngPoint = MySurvey1.InverseBearing
+        Debug.WriteLine("LineBearing " & frmAquaPilot.lineBearing)
+        Debug.WriteLine("PointBearing " & BrngPoint)
         If CrossTrackDist > 0 Then
             If CrossTrackDist > OldCrossTrackDist Then
                 ' calc some percentage to control the bearing change
