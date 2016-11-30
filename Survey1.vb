@@ -549,6 +549,9 @@
                 If (t > -kEpsilon) Then
                     ' intersects at 1st segment vertex
                     t = 0.0
+                End If
+                If t = 0.0 Then
+
                     ' set our 'intersection' point to p1.
                     intersectPoint = lineStart
                 Else
@@ -566,6 +569,8 @@
                 If (t < (1.0 + kEpsilon)) Then
                     ' intersects at 2nd segment vertex
                     t = 1.0
+                End If
+                If t = 1.0 Then
                     ' set our 'intersection' point to p2.
                     intersectPoint = lineEnd
                 Else
