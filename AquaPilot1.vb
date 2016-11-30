@@ -268,6 +268,7 @@ Public Class AquaPilot1
         BrngPoint = MySurvey1.InverseBearing
         Debug.WriteLine("LineBearing " & frmAquaPilot.lineBearing)
         Debug.WriteLine("PointBearing " & BrngPoint)
+
         If CrossTrackDist > 0 Then
             If CrossTrackDist > OldCrossTrackDist Then
                 ' calc some percentage to control the bearing change
