@@ -537,16 +537,13 @@
             intersectPoint = lineStart
             t = 0.0
             distance = ((dp1X * dp1X) + (dp1Y * dp1Y))
-
         Else
-
             ' Project a line from p to the segment [p1,p2].  By considering the line
             ' extending the segment, parameterized as p1 + (t * (p2 - p1)),
             ' we find projection of point p onto the line. 
             ' It falls where t = [(p - p1) . (p2 - p1)] / |p2 - p1|^2
             t = ((dp1X * dX) + (dp1Y * dY)) / segLenSquared
             If (t < kEpsilon) Then
-
                 ' intersects at Or to the "left" of first segment vertex (lineStart.X, lineStart.Y).  If t Is approximately 0.0, then
                 ' intersection Is at p1.  If t Is less than that, then there Is no intersection (i.e. p Is Not within
                 ' the 'bounds' of the segment)
@@ -557,15 +554,13 @@
                 ' set our 'intersection' point to p1.
                 intersectPoint = lineStart
                 ' Note: If you Then wanted the ACTUAL intersection point Of where the projected lines would intersect If
-                ' we were doing PointLineDistanceSquared, then intersectPoint.X would be (lineStart.X + (t * dx)) And intersectPoint.Y would be (lineStart.Y + (t * dy)).
-
+                ' we were doing PointLineDistanceSquared, then intersectPoint.X would be (lineStart.X + (t * dx)) And
+                ' intersectPoint.y would be (lineStart.Y + (t * dy)).
             ElseIf (t > (1.0 - kEpsilon)) Then
-
                 ' intersects at Or to the "right" of second segment vertex (lineEnd.X, lineEnd.Y).  If t Is approximately 1.0, then
                 ' intersection Is at p2.  If t Is greater than that, then there Is no intersection (i.e. p Is Not within
                 ' the 'bounds' of the segment)
                 If (t < (1.0 + kEpsilon)) Then
-
                     ' intersects at 2nd segment vertex
                     t = 1.0
                 End If
@@ -573,9 +568,7 @@
                 intersectPoint = lineEnd
                 ' Note: If you Then wanted the ACTUAL intersection point Of where the projected lines would intersect If
                 ' we were doing PointLineDistanceSquared, then intersectPoint.X would be (lineStart.X + (t * dx)) And intersectPoint.Y would be (lineStart.Y + (t * dy)).
-
             Else
-
                 ' The projection of the point to the point on the segment that Is perpendicular succeeded And the point
                 ' Is 'within' the bounds of the segment.  Set the intersection point as that projected point.
                 intersectPoint.x = (lineStart.x + (t * dX))
@@ -591,6 +584,7 @@
         End If
 
         Return distance
+
     End Function
 
     '    Public Function ClosestPoint(point As DoubleXY, linePointA As DoubleXY, linePointB As DoubleXY) As DoubleXY
