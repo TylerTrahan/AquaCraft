@@ -519,6 +519,103 @@
         DistanceToLine = Math.Sqrt((Xc - Xp) ^ 2 + (Yc - Yp) ^ 2) 'a² + b² = c²
 
     End Function
+    Public Function PointSegmentDistanceSquared(point As DoubleXY, lineStart As DoubleXY, lineEnd As DoubleXY, intersectPoint As DoubleXY)
+
+        Dim kMinSegmentLenSquared As Double = 0.00000001 'adjust To suit.  If you use float, you'll probably want something like 0.000001f
+        Dim kEpsilon As Double = 0.00000000000001 'adjust To suit.  If you use floats, you'll probably want something like 1E-7f
+        Dim dX As Double = lineEnd.x - lineStart.x
+        Dim dY As Double = lineEnd.y - lineStart.y
+        Dim dp1X As Double = point.x - lineStart.x
+        Dim dp1Y As Double = point.y - lineStart.y
+        Dim segLenSquared As Double = (dX * dX) + (dY * dY)
+        Dim t As Double = 0.0
+        Dim distance As Double
+
+        If (segLenSquared >= -kMinSegmentLenSquared And segLenSquared <= kMinSegmentLenSquared) Then
+
+            ' segment Is a point.
+            intersectPoint = lineStart
+            t = 0.0
+            distance = ((dp1X * dp1X) + (dp1Y * dp1Y))
+
+        Else
+
+            ' Project a line from p to the segment [p1,p2].  By considering the line
+            ' extending the segment, parameterized as p1 + (t * (p2 - p1)),
+            ' we find projection of point p onto the line. 
+            ' It falls where t = [(p - p1) . (p2 - p1)] / |p2 - p1|^2
+            t = ((dp1X * dX) + (dp1Y * dY)) / segLenSquared
+            If (t < kEpsilon) Then
+
+                ' intersects at Or to the "left" of first segment vertex (lineStart.X, lineStart.Y).  If t Is approximately 0.0, then
+                ' intersection Is at p1.  If t Is less than that, then there Is no intersection (i.e. p Is Not within
+                ' the 'bounds' of the segment)
+                If (t > -kEpsilon) Then
+                    ' intersects at 1st segment vertex
+                    t = 0.0
+                End If
+                ' set our 'intersection' point to p1.
+                intersectPoint = lineStart
+                ' Note: If you Then wanted the ACTUAL intersection point Of where the projected lines would intersect If
+                ' we were doing PointLineDistanceSquared, then intersectPoint.X would be (lineStart.X + (t * dx)) And intersectPoint.Y would be (lineStart.Y + (t * dy)).
+
+            ElseIf (t > (1.0 - kEpsilon)) Then
+
+                ' intersects at Or to the "right" of second segment vertex (lineEnd.X, lineEnd.Y).  If t Is approximately 1.0, then
+                ' intersection Is at p2.  If t Is greater than that, then there Is no intersection (i.e. p Is Not within
+                ' the 'bounds' of the segment)
+                If (t < (1.0 + kEpsilon)) Then
+
+                    ' intersects at 2nd segment vertex
+                    t = 1.0
+                End If
+                ' set our 'intersection' point to p2.
+                intersectPoint = lineEnd
+                ' Note: If you Then wanted the ACTUAL intersection point Of where the projected lines would intersect If
+                ' we were doing PointLineDistanceSquared, then intersectPoint.X would be (lineStart.X + (t * dx)) And intersectPoint.Y would be (lineStart.Y + (t * dy)).
+
+            Else
+
+                ' The projection of the point to the point on the segment that Is perpendicular succeeded And the point
+                ' Is 'within' the bounds of the segment.  Set the intersection point as that projected point.
+                intersectPoint.x = (lineStart.x + (t * dX))
+                intersectPoint.y = (lineStart.y + (t * dY))
+            End If
+            ' return the squared distance from p to the intersection point.  Note that we return the squared distance
+            ' as an optimization because many times you just need to compare relative distances And the squared values
+            ' works fine for that.  If you want the ACTUAL distance, just take the square root of this value.
+            Dim dpqX As Double = point.x - intersectPoint.x
+            Dim dpqY As Double = point.y - intersectPoint.y
+
+            distance = Math.Sqrt((dpqX * dpqX) + (dpqY * dpqY))
+        End If
+
+        Return distance
+    End Function
+
+    '    Public Function ClosestPoint(point As DoubleXY, linePointA As DoubleXY, linePointB As DoubleXY) As DoubleXY
+
+    '    Dim x0 = point.x;
+    '    Dim y0 = point.y;
+
+    '    Dim x1 = linePointA.x;
+    '    Dim y1 = linePointA.y;
+
+    '    Dim x2 = linePointB.x;
+    '    Dim y2 = linePointB.y;
+
+    '    Dim Dx = (x2 - x1);
+    '    Dim Dy = (y2 - y1);
+
+    '    Dim numerator = Math.Abs(Dy * x0 - Dx * y0 - x1 * y2 + x2 * y1);
+    '    Dim denominator = Math.Sqrt(Dx * Dx + Dy * Dy);
+    '    If (denominator == 0) Then
+    '    Return this.dist2(point, linePointA);
+    '    End If
+
+    '    Return numerator / denominator
+
+    '    End Function
 
     ' StdDevRealTime()
     ' arguments: NewValue - New Value in set
