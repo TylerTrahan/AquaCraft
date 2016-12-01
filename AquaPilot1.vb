@@ -32,6 +32,7 @@ Public Class AquaPilot1
     Public CurrentBoatY As Double
     Public CurrentBoatHeading As Double ' boat heading from gyro
     Public CurrentBoatCourse As Double ' calculated course
+    Public CurrentBoatSpeed As Double ' speed from gps
     Public CurrentRudderAngle As Double
     Public CurrentCourseToWaypoint As Double
     Public CurrentRoll As Double
@@ -255,7 +256,6 @@ Public Class AquaPilot1
         Static NewBearing As Double
         Static CrossTrackDist As Double
         Static OldCrossTrackDist As Double
-        Dim LinePoint As Survey1.DoubleXY
         Dim DistPoint As Double
         Dim BrngPoint As Double
 
@@ -263,30 +263,26 @@ Public Class AquaPilot1
             NewBearing = frmAquaPilot.lineBearing
         End If
         CrossTrackDist = GetCrossTrackXY(MissionPlanXY, MissionLine, CurrentLocation)
-        DistPoint = MySurvey1.ClosestPoint(MissionPlanXY(MissionLine), MissionPlanXY(MissionLine + 1), CurrentLocation, LinePoint)
-        Call MySurvey1.Inverse(CurrentLocation.x, CurrentLocation.y, LinePoint.x, LinePoint.y)
+        DistPoint = MySurvey1.DistanceToLine(MissionPlanXY(MissionLine).x, MissionPlanXY(MissionLine).y, MissionPlanXY(MissionLine + 1).x, MissionPlanXY(MissionLine + 1).y, CurrentLocation.x, CurrentLocation.y)
+        Call MySurvey1.Inverse(CurrentLocation.x, CurrentLocation.y, MySurvey1.IntersectCoord.x, MySurvey1.IntersectCoord.y)
         BrngPoint = MySurvey1.InverseBearing
         Debug.WriteLine("LineBearing " & frmAquaPilot.lineBearing)
         Debug.WriteLine("PointBearing " & BrngPoint)
         Debug.WriteLine("DistanceToLine " & DistPoint)
 
         If CrossTrackDist > 0 Then
-            If CrossTrackDist > OldCrossTrackDist Then
-                ' calc some percentage to control the bearing change
-                If CrossTrackDist > 90 Then
-                    NewBearing = frmAquaPilot.lineBearing - 90
-                Else
-                    NewBearing = frmAquaPilot.lineBearing - CrossTrackDist
-                End If
+            ' calc some percentage to control the bearing change
+            If CrossTrackDist > 90 Then
+                NewBearing = frmAquaPilot.lineBearing - 90
+            Else
+                NewBearing = frmAquaPilot.lineBearing - CrossTrackDist
             End If
             'NewBearing = NewBearing - 5
         ElseIf CrossTrackDist < 0 Then
-            If CrossTrackDist < OldCrossTrackDist Then
-                If CrossTrackDist < -90 Then
-                    NewBearing = frmAquaPilot.lineBearing + 90
-                Else
-                    NewBearing = frmAquaPilot.lineBearing - CrossTrackDist
-                End If
+            If CrossTrackDist < -90 Then
+                NewBearing = frmAquaPilot.lineBearing + 90
+            Else
+                NewBearing = frmAquaPilot.lineBearing - CrossTrackDist
             End If
             'NewBearing = NewBearing + 5
         End If
