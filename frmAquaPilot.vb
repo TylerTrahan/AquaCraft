@@ -136,7 +136,7 @@ Public Class frmAquaPilot
                 MyAquaPilot.MySurvey1.parseNmea(gpsreadBuffer)
                 MyAquaPilot.CurrentBoatLat = MyAquaPilot.MySurvey1.NmeaInfo.gga.lat
                 MyAquaPilot.CurrentBoatLon = MyAquaPilot.MySurvey1.NmeaInfo.gga.lon
-
+                MyAquaPilot.CurrentBoatCourse = MyAquaPilot.MySurvey1.NmeaInfo.vtg.cogt
                 'data to UI thread 
                 Me.Invoke(New EventHandler(AddressOf DoUpdate))
             Catch ex As Exception
