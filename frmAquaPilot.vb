@@ -137,6 +137,8 @@ Public Class frmAquaPilot
                 MyAquaPilot.CurrentBoatLat = MyAquaPilot.MySurvey1.NmeaInfo.gga.lat
                 MyAquaPilot.CurrentBoatLon = MyAquaPilot.MySurvey1.NmeaInfo.gga.lon
                 MyAquaPilot.CurrentBoatCourse = MyAquaPilot.MySurvey1.NmeaInfo.vtg.cogt
+                MyAquaPilot.CurrentBoatSpeed = MyAquaPilot.MySurvey1.NmeaInfo.vtg.SpeedKt
+
                 'data to UI thread 
                 Me.Invoke(New EventHandler(AddressOf DoUpdate))
             Catch ex As Exception
