@@ -258,9 +258,11 @@ Public Class AquaPilot1
         Static OldCrossTrackDist As Double
         Dim DistPoint As Double
         Dim BrngPoint As Double
+        Dim ResetFlag As Boolean
 
         If NewBearing = Nothing Then
             NewBearing = frmAquaPilot.lineBearing
+            ResetFlag = False
         End If
         CrossTrackDist = GetCrossTrackXY(MissionPlanXY, MissionLine, CurrentLocation)
         DistPoint = MySurvey1.DistanceToLine(MissionPlanXY(MissionLine).x, MissionPlanXY(MissionLine).y, MissionPlanXY(MissionLine + 1).x, MissionPlanXY(MissionLine + 1).y, CurrentLocation.x, CurrentLocation.y)
@@ -274,15 +276,27 @@ Public Class AquaPilot1
             ' calc some percentage to control the bearing change
             If CrossTrackDist > 90 Then
                 NewBearing = frmAquaPilot.lineBearing - 90
-            Else
-                NewBearing = frmAquaPilot.lineBearing - CrossTrackDist
+                ResetFlag = True
+            ElseIf Math.Abs((frmAquaPilot.lineBearing + 360) - (CurrentBoatCourse + 360)) > 10 Then
+                If ResetFlag = True Then
+                    NewBearing = frmAquaPilot.lineBearing
+                    ResetFlag = False
+                    Beep()
+                End If
+                NewBearing = NewBearing - (CrossTrackDist / 100)
             End If
             'NewBearing = NewBearing - 5
         ElseIf CrossTrackDist < 0 Then
             If CrossTrackDist < -90 Then
                 NewBearing = frmAquaPilot.lineBearing + 90
-            Else
-                NewBearing = frmAquaPilot.lineBearing - CrossTrackDist
+                ResetFlag = True
+            ElseIf Math.Abs((frmAquaPilot.lineBearing + 360) - (CurrentBoatCourse + 360)) > 10 Then
+                If ResetFlag = True Then
+                    NewBearing = frmAquaPilot.lineBearing
+                    ResetFlag = False
+                    Beep()
+                End If
+                NewBearing = NewBearing - (CrossTrackDist / 100)
             End If
             'NewBearing = NewBearing + 5
         End If
