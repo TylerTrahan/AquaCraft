@@ -1257,6 +1257,14 @@
         BoxCarFilter = Sum / (Max - Min)
     End Function
 
+    Public Function MedianB(ByRef ValueArray() As Double) As Double
+        Dim TempArray(ValueArray.Length) As Double
+        TempArray = ValueArray
+        Call QuickSort(ValueArray)
+        Dim nElements As Integer = ValueArray.Length
+        MedianB = ValueArray(nElements \ 2)
+    End Function
+
     Public Function UnixToTime(ByVal strUnixTime As String) As Date
         UnixToTime = DateAdd(DateInterval.Second, Val(strUnixTime), #1/1/1970#)
         If UnixToTime.IsDaylightSavingTime = True Then
