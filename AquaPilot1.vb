@@ -258,7 +258,7 @@ Public Class AquaPilot1
         Static OldCrossTrackDist As Double
         Dim DistPoint As Double
         Dim BrngPoint As Double
-        Dim ResetFlag As Boolean
+        Static ResetFlag As Boolean
 
         If NewBearing = Nothing Then
             NewBearing = frmAquaPilot.lineBearing
@@ -281,9 +281,9 @@ Public Class AquaPilot1
                 If ResetFlag = True Then
                     NewBearing = frmAquaPilot.lineBearing
                     ResetFlag = False
-                    Beep()
+                    'Beep()
                 End If
-                NewBearing = NewBearing - (CrossTrackDist / 100)
+                NewBearing = NewBearing - (CrossTrackDist / 10)
             End If
             'NewBearing = NewBearing - 5
         ElseIf CrossTrackDist < 0 Then
@@ -294,9 +294,9 @@ Public Class AquaPilot1
                 If ResetFlag = True Then
                     NewBearing = frmAquaPilot.lineBearing
                     ResetFlag = False
-                    Beep()
+                    'Beep()
                 End If
-                NewBearing = NewBearing - (CrossTrackDist / 100)
+                NewBearing = NewBearing - (CrossTrackDist / 10)
             End If
             'NewBearing = NewBearing + 5
         End If
