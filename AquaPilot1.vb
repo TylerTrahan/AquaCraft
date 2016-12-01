@@ -259,6 +259,10 @@ Public Class AquaPilot1
         Dim DistPoint As Double
         Dim BrngPoint As Double
         Static ResetFlag As Boolean
+        Dim DiffBearing As Double
+
+        DiffBearing = frmAquaPilot.lineBearing - CurrentBoatCourse
+        DiffBearing = DiffBearing + Math.Ceiling(-DiffBearing / 360) * 360
 
         If NewBearing = Nothing Then
             NewBearing = frmAquaPilot.lineBearing
@@ -277,7 +281,7 @@ Public Class AquaPilot1
             If CrossTrackDist > 90 Then
                 NewBearing = frmAquaPilot.lineBearing - 90
                 ResetFlag = True
-            ElseIf Math.Abs((frmAquaPilot.lineBearing + 360) - (CurrentBoatCourse + 360)) > 10 Then
+            ElseIf DiffBearing > 10 Then
                 If ResetFlag = True Then
                     NewBearing = frmAquaPilot.lineBearing
                     ResetFlag = False
@@ -290,7 +294,7 @@ Public Class AquaPilot1
             If CrossTrackDist < -90 Then
                 NewBearing = frmAquaPilot.lineBearing + 90
                 ResetFlag = True
-            ElseIf Math.Abs((frmAquaPilot.lineBearing + 360) - (CurrentBoatCourse + 360)) > 10 Then
+            ElseIf DiffBearing > 10 Then
                 If ResetFlag = True Then
                     NewBearing = frmAquaPilot.lineBearing
                     ResetFlag = False
