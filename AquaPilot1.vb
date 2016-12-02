@@ -286,11 +286,10 @@ Public Class AquaPilot1
             If CrossTrackDist > 90 Then
                 NewBearing = frmAquaPilot.lineBearing - 90
                 ResetFlag = True
-            ElseIf Math.Abs(DiffBearing) > 10 Then
+            ElseIf Math.Abs(DiffBearing) > 5 Then
                 If ResetFlag = True Then
                     NewBearing = frmAquaPilot.lineBearing
                     ResetFlag = False
-                    'Beep()
                 End If
                 NewBearing = NewBearing - (CrossTrackDist / 10)
             End If
@@ -299,11 +298,10 @@ Public Class AquaPilot1
             If CrossTrackDist < -90 Then
                 NewBearing = frmAquaPilot.lineBearing + 90
                 ResetFlag = True
-            ElseIf Math.Abs(DiffBearing) > 10 Then
+            ElseIf Math.Abs(DiffBearing) > 5 Then
                 If ResetFlag = True Then
                     NewBearing = frmAquaPilot.lineBearing
                     ResetFlag = False
-                    'Beep()
                 End If
                 NewBearing = NewBearing - (CrossTrackDist / 10)
             End If
