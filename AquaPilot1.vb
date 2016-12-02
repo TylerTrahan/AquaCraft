@@ -291,6 +291,7 @@ Public Class AquaPilot1
                     NewBearing = frmAquaPilot.lineBearing
                     ResetFlag = False
                 End If
+                ' compare DiffBearing and CrossTrackDist to determine NewBearing
                 NewBearing = NewBearing - (CrossTrackDist / 10)
             End If
             'NewBearing = NewBearing - 5
@@ -303,6 +304,7 @@ Public Class AquaPilot1
                     NewBearing = frmAquaPilot.lineBearing
                     ResetFlag = False
                 End If
+                ' compare DiffBearing and CrossTrackDist to determine NewBearing
                 NewBearing = NewBearing - (CrossTrackDist / 10)
             End If
             'NewBearing = NewBearing + 5
