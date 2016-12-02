@@ -40,6 +40,7 @@ Partial Class frmAquaPilot
         Me.Button1 = New System.Windows.Forms.Button()
         Me.btnExit = New System.Windows.Forms.Button()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.SpeedGauge = New AquaControls.AquaGauge()
         Me.Panel2.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -221,6 +222,28 @@ Partial Class frmAquaPilot
         Me.btnExit.Text = "EXIT"
         Me.btnExit.UseVisualStyleBackColor = False
         '
+        'SpeedGauge
+        '
+        Me.SpeedGauge.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.SpeedGauge.BackColor = System.Drawing.Color.Transparent
+        Me.SpeedGauge.DialColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.SpeedGauge.DialText = "Speed"
+        Me.SpeedGauge.DisplayTop = True
+        Me.SpeedGauge.FromAngle = 180.0!
+        Me.SpeedGauge.Glossiness = 100.0!
+        Me.SpeedGauge.Location = New System.Drawing.Point(134, 127)
+        Me.SpeedGauge.MaxValue = 20.0!
+        Me.SpeedGauge.MinValue = 0!
+        Me.SpeedGauge.Name = "SpeedGauge"
+        Me.SpeedGauge.NoOfDivisions = 4
+        Me.SpeedGauge.NoOfSubDivisions = 2
+        Me.SpeedGauge.RecommendedValue = 20.0!
+        Me.SpeedGauge.Size = New System.Drawing.Size(136, 136)
+        Me.SpeedGauge.TabIndex = 28
+        Me.SpeedGauge.ThresholdPercent = 0!
+        Me.SpeedGauge.ToAngle = 360.0!
+        Me.SpeedGauge.Value = 0!
+        '
         'frmAquaPilot
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -228,6 +251,7 @@ Partial Class frmAquaPilot
         Me.AutoValidate = System.Windows.Forms.AutoValidate.Disable
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(933, 585)
+        Me.Controls.Add(Me.SpeedGauge)
         Me.Controls.Add(Me.btnExit)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Panel2)
@@ -274,4 +298,5 @@ Partial Class frmAquaPilot
     Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents btnExit As System.Windows.Forms.Button
     Friend WithEvents ToolTip1 As System.Windows.Forms.ToolTip
+    Friend WithEvents SpeedGauge As AquaControls.AquaGauge
 End Class
