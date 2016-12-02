@@ -261,8 +261,13 @@ Public Class AquaPilot1
         Static ResetFlag As Boolean
         Dim DiffBearing As Double
 
-        DiffBearing = frmAquaPilot.lineBearing - CurrentBoatCourse
-        DiffBearing = DiffBearing + Math.Ceiling(-DiffBearing / 360) * 360
+        DiffBearing = (frmAquaPilot.lineBearing + 360) - (CurrentBoatCourse + 360)
+        If DiffBearing > 180 Then
+            DiffBearing = DiffBearing - 360
+        ElseIf DiffBearing < -180 Then
+            DiffBearing = DiffBearing + 360
+        End If
+        Debug.WriteLine("DiffBearing = " & DiffBearing)
 
         If NewBearing = Nothing Then
             NewBearing = frmAquaPilot.lineBearing
@@ -272,16 +277,16 @@ Public Class AquaPilot1
         DistPoint = MySurvey1.DistanceToLine(MissionPlanXY(MissionLine).x, MissionPlanXY(MissionLine).y, MissionPlanXY(MissionLine + 1).x, MissionPlanXY(MissionLine + 1).y, CurrentLocation.x, CurrentLocation.y)
         Call MySurvey1.Inverse(CurrentLocation.x, CurrentLocation.y, MySurvey1.IntersectCoord.x, MySurvey1.IntersectCoord.y)
         BrngPoint = MySurvey1.InverseBearing
-        Debug.WriteLine("LineBearing " & frmAquaPilot.lineBearing)
-        Debug.WriteLine("PointBearing " & BrngPoint)
-        Debug.WriteLine("DistanceToLine " & DistPoint)
+        'Debug.WriteLine("LineBearing " & frmAquaPilot.lineBearing)
+        'Debug.WriteLine("PointBearing " & BrngPoint)
+        'Debug.WriteLine("DistanceToLine " & DistPoint)
 
         If CrossTrackDist > 0 Then
             ' calc some percentage to control the bearing change
             If CrossTrackDist > 90 Then
                 NewBearing = frmAquaPilot.lineBearing - 90
                 ResetFlag = True
-            ElseIf DiffBearing > 10 Then
+            ElseIf Math.Abs(DiffBearing) > 10 Then
                 If ResetFlag = True Then
                     NewBearing = frmAquaPilot.lineBearing
                     ResetFlag = False
@@ -294,7 +299,7 @@ Public Class AquaPilot1
             If CrossTrackDist < -90 Then
                 NewBearing = frmAquaPilot.lineBearing + 90
                 ResetFlag = True
-            ElseIf DiffBearing > 10 Then
+            ElseIf Math.Abs(DiffBearing) > 10 Then
                 If ResetFlag = True Then
                     NewBearing = frmAquaPilot.lineBearing
                     ResetFlag = False
