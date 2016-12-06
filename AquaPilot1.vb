@@ -287,7 +287,7 @@ Public Class AquaPilot1
                 ' run perpendicular to the line
                 NewBearing = frmAquaPilot.lineBearing - 90
                 ResetFlag = True
-            ElseIf Math.Abs(DiffBearing) > 5 Then
+            ElseIf CrossTrackDist > 2 Then
                 If ResetFlag = True Then ' set bearing to line bearing
                     NewBearing = frmAquaPilot.lineBearing
                     ResetFlag = False
@@ -304,7 +304,7 @@ Public Class AquaPilot1
                 ' run perpendicular to the line
                 NewBearing = frmAquaPilot.lineBearing + 90
                 ResetFlag = True
-            ElseIf Math.Abs(DiffBearing) > 5 Then
+            ElseIf CrossTrackDist < -2 Then
                 If ResetFlag = True Then ' set bearing to line bearing
                     NewBearing = frmAquaPilot.lineBearing
                     ResetFlag = False
