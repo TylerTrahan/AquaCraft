@@ -293,8 +293,8 @@ Public Class AquaPilot1
                     ResetFlag = False
                 End If
                 ' compare DiffBearing and CrossTrackDist to determine NewBearing
-
                 NewBearing = NewBearing - (DiffBearing / 2)
+                Debug.WriteLine("NewBearing " & NewBearing)
             End If
             'NewBearing = NewBearing - 5
         ElseIf CrossTrackDist < 0 Then
@@ -308,8 +308,8 @@ Public Class AquaPilot1
                     ResetFlag = False
                 End If
                 ' compare DiffBearing and CrossTrackDist to determine NewBearing
-
                 NewBearing = NewBearing - (DiffBearing / 2)
+                Debug.WriteLine("NewBearing " & NewBearing)
             End If
             'NewBearing = NewBearing + 5
         End If
