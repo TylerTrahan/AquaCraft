@@ -292,8 +292,10 @@ Public Class AquaPilot1
                     NewBearing = frmAquaPilot.lineBearing
                     ResetFlag = False
                 End If
-                ' compare DiffBearing and CrossTrackDist to determine NewBearing
-                NewBearing = frmAquaPilot.lineBearing - (DiffBearing / 2)
+                ' compare CrossTrackDistances to see if boat is headed away from or to line
+                If CrossTrackDist > OldCrossTrackDist Or CrossTrackDist = OldCrossTrackDist Then
+                    NewBearing = frmAquaPilot.lineBearing - (DiffBearing / 2)
+                End If
                 Debug.WriteLine("NewBearing " & NewBearing)
             End If
             'NewBearing = NewBearing - 5
@@ -307,8 +309,10 @@ Public Class AquaPilot1
                     NewBearing = frmAquaPilot.lineBearing
                     ResetFlag = False
                 End If
-                ' compare DiffBearing and CrossTrackDist to determine NewBearing
-                NewBearing = frmAquaPilot.lineBearing - (DiffBearing / 2)
+                ' compare CrossTrackDistances to see if boat is headed away from or to line
+                If CrossTrackDist < OldCrossTrackDist Or CrossTrackDist = OldCrossTrackDist Then
+                    NewBearing = frmAquaPilot.lineBearing - (DiffBearing / 2)
+                End If
                 Debug.WriteLine("NewBearing " & NewBearing)
             End If
             'NewBearing = NewBearing + 5
