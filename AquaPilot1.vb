@@ -284,28 +284,32 @@ Public Class AquaPilot1
         If CrossTrackDist > 0 Then
             ' calc some percentage to control the bearing change
             If CrossTrackDist > 90 Then
+                ' run perpendicular to the line
                 NewBearing = frmAquaPilot.lineBearing - 90
                 ResetFlag = True
             ElseIf Math.Abs(DiffBearing) > 5 Then
-                If ResetFlag = True Then
+                If ResetFlag = True Then ' set bearing to line bearing
                     NewBearing = frmAquaPilot.lineBearing
                     ResetFlag = False
                 End If
                 ' compare DiffBearing and CrossTrackDist to determine NewBearing
-                NewBearing = NewBearing - (CrossTrackDist / 10)
+
+                NewBearing = NewBearing - (DiffBearing / 2)
             End If
             'NewBearing = NewBearing - 5
         ElseIf CrossTrackDist < 0 Then
             If CrossTrackDist < -90 Then
+                ' run perpendicular to the line
                 NewBearing = frmAquaPilot.lineBearing + 90
                 ResetFlag = True
             ElseIf Math.Abs(DiffBearing) > 5 Then
-                If ResetFlag = True Then
+                If ResetFlag = True Then ' set bearing to line bearing
                     NewBearing = frmAquaPilot.lineBearing
                     ResetFlag = False
                 End If
                 ' compare DiffBearing and CrossTrackDist to determine NewBearing
-                NewBearing = NewBearing - (CrossTrackDist / 10)
+
+                NewBearing = NewBearing - (DiffBearing / 2)
             End If
             'NewBearing = NewBearing + 5
         End If
