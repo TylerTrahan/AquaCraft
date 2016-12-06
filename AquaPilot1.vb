@@ -277,6 +277,9 @@ Public Class AquaPilot1
         DistPoint = MySurvey1.DistanceToLine(MissionPlanXY(MissionLine).x, MissionPlanXY(MissionLine).y, MissionPlanXY(MissionLine + 1).x, MissionPlanXY(MissionLine + 1).y, CurrentLocation.x, CurrentLocation.y)
         Call MySurvey1.Inverse(CurrentLocation.x, CurrentLocation.y, MySurvey1.IntersectCoord.x, MySurvey1.IntersectCoord.y)
         BrngPoint = MySurvey1.InverseBearing
+
+        ' figure out if the boat is outside the bounds of the survey line (lead in lead out)
+
         'Debug.WriteLine("LineBearing " & frmAquaPilot.lineBearing)
         'Debug.WriteLine("PointBearing " & BrngPoint)
         'Debug.WriteLine("DistanceToLine " & DistPoint)
