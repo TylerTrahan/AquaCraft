@@ -66,6 +66,7 @@ Public Class frmAquaPilot
         'MyAquaPilot.WaypointY = 1300100
         InitializePorts()
         Timer1.Enabled = True
+        MyAquaPilot.LeadIn = 100
     End Sub
 
     Private Function InitializePorts() As Boolean
