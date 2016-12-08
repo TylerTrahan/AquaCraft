@@ -256,8 +256,10 @@ Public Class AquaPilot1
         Static NewBearing As Double
         Static CrossTrackDist As Double
         Static OldCrossTrackDist As Double
-        Dim DistPoint As Double
+        'Dim DistPoint As Double
         Dim BrngPoint As Double
+        Dim MaxBrng As Double
+        Dim MinBrng As Double
         Static ResetFlag As Boolean
         Dim DiffBearing As Double
 
@@ -274,12 +276,36 @@ Public Class AquaPilot1
             ResetFlag = False
         End If
         CrossTrackDist = GetCrossTrackXY(MissionPlanXY, MissionLine, CurrentLocation)
-        DistPoint = MySurvey1.DistanceToLine(MissionPlanXY(MissionLine).x, MissionPlanXY(MissionLine).y, MissionPlanXY(MissionLine + 1).x, MissionPlanXY(MissionLine + 1).y, CurrentLocation.x, CurrentLocation.y)
-        Call MySurvey1.Inverse(CurrentLocation.x, CurrentLocation.y, MySurvey1.IntersectCoord.x, MySurvey1.IntersectCoord.y)
+        'DistPoint = MySurvey1.DistanceToLine(MissionPlanXY(MissionLine).x, MissionPlanXY(MissionLine).y, MissionPlanXY(MissionLine + 1).x, MissionPlanXY(MissionLine + 1).y, CurrentLocation.x, CurrentLocation.y)
+        Call MySurvey1.Inverse(CurrentLocation.x, CurrentLocation.y, MissionPlanXY(MissionLine).x, MissionPlanXY(MissionLine).y)
         BrngPoint = MySurvey1.InverseBearing
-
+        MaxBrng = BrngPoint + 90
+        MinBrng = BrngPoint - 90
+        If MaxBrng > 360 Then
+            MaxBrng = MaxBrng - 360
+        ElseIf MaxBrng < 0 Then
+            MaxBrng = MaxBrng + 360
+        End If
+        If MinBrng > 360 Then
+            MinBrng = MinBrng - 360
+        ElseIf MinBrng < 0 Then
+            MinBrng = MinBrng + 360
+        End If
         ' figure out if the boat is outside the bounds of the survey line (lead in lead out)
-
+        ' inverse between CurrentLocation and MissionPlanXY(MissionLine) and check for bearing
+        If MinBrng > MaxBrng Then
+            If frmAquaPilot.lineBearing < MinBrng And frmAquaPilot.lineBearing > MaxBrng Then
+                ' line started
+            Else
+                ' line not started
+            End If
+        ElseIf MaxBrng > MinBrng Then
+            If frmAquaPilot.lineBearing < MaxBrng And frmAquaPilot.lineBearing > MinBrng Then
+                ' line started
+            Else
+                ' line not started
+            End If
+        End If
         'Debug.WriteLine("LineBearing " & frmAquaPilot.lineBearing)
         'Debug.WriteLine("PointBearing " & BrngPoint)
         'Debug.WriteLine("DistanceToLine " & DistPoint)
