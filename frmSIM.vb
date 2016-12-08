@@ -14,15 +14,21 @@
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         rAngle.Text = CStr(frmAquaPilot.MyAquaPilot.CurrentRudderAngle)
-        wCourse.Text = CStr(frmAquaPilot.MyAquaPilot.CurrentCourseToWaypoint)
-        xTrack.Text = CStr(frmAquaPilot.currentXTrack)
+        wCourse.Text = Format(frmAquaPilot.MyAquaPilot.CurrentCourseToWaypoint, "0.00")
+        xTrack.Text = Format(frmAquaPilot.currentXTrack, "0.00")
         'Debug.Print(CInt(frmAquaPilot.lineBearing))
         HScrollBar3.Value = CInt(frmAquaPilot.lineBearing)
         lBearing.Text = HScrollBar3.Value
         boatHeading.Text = frmAquaPilot.MyAquaPilot.CurrentBoatHeading
         wptX.Text = Format(frmAquaPilot.MyAquaPilot.WaypointX, "0.00")
         wptY.Text = Format(frmAquaPilot.MyAquaPilot.WaypointY, "0.00")
-
+        If frmAquaPilot.MyAquaPilot.OnLine = True Then
+            LineStat.Text = "Online"
+            LineStat.ForeColor = Drawing.Color.Green
+        Else
+            LineStat.Text = "Offline"
+            LineStat.ForeColor = Drawing.Color.Red
+        End If
 
     End Sub
 
@@ -63,6 +69,12 @@
         boatY.Text = frmAquaPilot.MyAquaPilot.CurrentBoatY
         wptX.Text = frmAquaPilot.MyAquaPilot.WaypointX
         wptY.Text = frmAquaPilot.MyAquaPilot.WaypointY
+        StartY.Text = frmAquaPilot.MyAquaPilot.MissionPlanXY(frmAquaPilot.MyAquaPilot.MissionLine).y
+        StartX.Text = frmAquaPilot.MyAquaPilot.MissionPlanXY(frmAquaPilot.MyAquaPilot.MissionLine).x
+        EndY.Text = frmAquaPilot.MyAquaPilot.MissionPlanXY(frmAquaPilot.MyAquaPilot.MissionLine + 1).y
+        EndX.Text = frmAquaPilot.MyAquaPilot.MissionPlanXY(frmAquaPilot.MyAquaPilot.MissionLine + 1).x
+
+
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click

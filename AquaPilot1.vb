@@ -279,74 +279,74 @@ Public Class AquaPilot1
         'DistPoint = MySurvey1.DistanceToLine(MissionPlanXY(MissionLine).x, MissionPlanXY(MissionLine).y, MissionPlanXY(MissionLine + 1).x, MissionPlanXY(MissionLine + 1).y, CurrentLocation.x, CurrentLocation.y)
         Call MySurvey1.Inverse(CurrentLocation.x, CurrentLocation.y, MissionPlanXY(MissionLine).x, MissionPlanXY(MissionLine).y)
         BrngPoint = MySurvey1.InverseBearing
-        MaxBrng = BrngPoint + 90
-        MinBrng = BrngPoint - 90
-        If MaxBrng > 360 Then
-            MaxBrng = MaxBrng - 360
-        ElseIf MaxBrng < 0 Then
-            MaxBrng = MaxBrng + 360
-        End If
-        If MinBrng > 360 Then
-            MinBrng = MinBrng - 360
-        ElseIf MinBrng < 0 Then
-            MinBrng = MinBrng + 360
-        End If
+        MaxBrng = BrngPoint + 90 + 360
+        MinBrng = BrngPoint - 90 + 360
+        Debug.WriteLine(frmAquaPilot.lineBearing + 360)
+        Debug.WriteLine(MaxBrng)
+        Debug.WriteLine(MinBrng)
         ' figure out if the boat is outside the bounds of the survey line (lead in lead out)
         ' inverse between CurrentLocation and MissionPlanXY(MissionLine) and check for bearing
         If MinBrng > MaxBrng Then
-            If frmAquaPilot.lineBearing < MinBrng And frmAquaPilot.lineBearing > MaxBrng Then
+            If (frmAquaPilot.lineBearing + 360) < MinBrng And (frmAquaPilot.lineBearing + 360) > MaxBrng Then
                 ' line started
+                OnLine = False
             Else
                 ' line not started
+                OnLine = True
             End If
         ElseIf MaxBrng > MinBrng Then
-            If frmAquaPilot.lineBearing < MaxBrng And frmAquaPilot.lineBearing > MinBrng Then
+            If (frmAquaPilot.lineBearing + 360) < MaxBrng And (frmAquaPilot.lineBearing + 360) > MinBrng Then
                 ' line started
+                OnLine = False
             Else
                 ' line not started
+                OnLine = True
             End If
         End If
-        'Debug.WriteLine("LineBearing " & frmAquaPilot.lineBearing)
-        'Debug.WriteLine("PointBearing " & BrngPoint)
-        'Debug.WriteLine("DistanceToLine " & DistPoint)
 
-        If CrossTrackDist > 0 Then
-            ' calc some percentage to control the bearing change
-            If CrossTrackDist > 90 Then
-                ' run perpendicular to the line
-                NewBearing = frmAquaPilot.lineBearing - 90
-                ResetFlag = True
-            ElseIf CrossTrackDist > 2 Then
-                If ResetFlag = True Then ' set bearing to line bearing
-                    NewBearing = frmAquaPilot.lineBearing
-                    ResetFlag = False
+        If OnLine = True Then
+
+            If CrossTrackDist > 0 Then
+                ' calc some percentage to control the bearing change
+                If CrossTrackDist > 90 Then
+                    ' run perpendicular to the line
+                    NewBearing = frmAquaPilot.lineBearing - 90
+                    ResetFlag = True
+                ElseIf CrossTrackDist > 2 Then
+                    If ResetFlag = True Then ' set bearing to line bearing
+                        NewBearing = frmAquaPilot.lineBearing
+                        ResetFlag = False
+                    End If
+                    ' compare CrossTrackDistances to see if boat is headed away from or to line
+                    If CrossTrackDist > OldCrossTrackDist Or CrossTrackDist = OldCrossTrackDist Then
+                        NewBearing = frmAquaPilot.lineBearing - (DiffBearing / 2)
+                    End If
+                    Debug.WriteLine("NewBearing " & NewBearing)
                 End If
-                ' compare CrossTrackDistances to see if boat is headed away from or to line
-                If CrossTrackDist > OldCrossTrackDist Or CrossTrackDist = OldCrossTrackDist Then
-                    NewBearing = frmAquaPilot.lineBearing - (DiffBearing / 2)
+                'NewBearing = NewBearing - 5
+            ElseIf CrossTrackDist < 0 Then
+                If CrossTrackDist < -90 Then
+                    ' run perpendicular to the line
+                    NewBearing = frmAquaPilot.lineBearing + 90
+                    ResetFlag = True
+                ElseIf CrossTrackDist < -2 Then
+                    If ResetFlag = True Then ' set bearing to line bearing
+                        NewBearing = frmAquaPilot.lineBearing
+                        ResetFlag = False
+                    End If
+                    ' compare CrossTrackDistances to see if boat is headed away from or to line
+                    If CrossTrackDist < OldCrossTrackDist Or CrossTrackDist = OldCrossTrackDist Then
+                        NewBearing = frmAquaPilot.lineBearing - (DiffBearing / 2)
+                    End If
+                    Debug.WriteLine("NewBearing " & NewBearing)
                 End If
-                Debug.WriteLine("NewBearing " & NewBearing)
+                'NewBearing = NewBearing + 5
             End If
-            'NewBearing = NewBearing - 5
-        ElseIf CrossTrackDist < 0 Then
-            If CrossTrackDist < -90 Then
-                ' run perpendicular to the line
-                NewBearing = frmAquaPilot.lineBearing + 90
-                ResetFlag = True
-            ElseIf CrossTrackDist < -2 Then
-                If ResetFlag = True Then ' set bearing to line bearing
-                    NewBearing = frmAquaPilot.lineBearing
-                    ResetFlag = False
-                End If
-                ' compare CrossTrackDistances to see if boat is headed away from or to line
-                If CrossTrackDist < OldCrossTrackDist Or CrossTrackDist = OldCrossTrackDist Then
-                    NewBearing = frmAquaPilot.lineBearing - (DiffBearing / 2)
-                End If
-                Debug.WriteLine("NewBearing " & NewBearing)
-            End If
-            'NewBearing = NewBearing + 5
+            MySurvey1.Traverse(CurrentBoatX, CurrentBoatY, NewBearing, 100)
+        Else
+            ' make waypoint 100m from start for lead in
+            MySurvey1.Traverse(frmAquaPilot.MyAquaPilot.MissionPlanXY(frmAquaPilot.MyAquaPilot.MissionLine).x, frmAquaPilot.MyAquaPilot.MissionPlanXY(frmAquaPilot.MyAquaPilot.MissionLine).y, frmAquaPilot.lineBearing, 100)
         End If
-        MySurvey1.Traverse(CurrentBoatX, CurrentBoatY, NewBearing, 100)
 
         OldCrossTrackDist = CrossTrackDist
         MakeWaypointXY.x = MySurvey1.TraverseX
@@ -404,7 +404,9 @@ Public Class AquaPilot1
     Public Function GetLineBearingXY(lineArray() As Survey1.DoubleXY, index As Integer) As Double
         Call MySurvey1.Inverse(lineArray(index).x, lineArray(index).y, lineArray(index + 1).x, lineArray(index + 1).y)
         If MySurvey1.InverseBearing < 1 Then
-            GetLineBearingXY = 360
+            GetLineBearingXY = 0
+        ElseIf MySurvey1.InverseBearing = 360 Then
+            GetLineBearingXY = 0
         Else
             GetLineBearingXY = MySurvey1.InverseBearing ' return bearing
         End If

@@ -66,6 +66,15 @@ Partial Class frmSIM
         Me.Label12 = New System.Windows.Forms.Label()
         Me.SpeedBar2 = New VerticalProgressBar.VerticalProgressBar()
         Me.SpeedBar1 = New VerticalProgressBar.VerticalProgressBar()
+        Me.StartX = New System.Windows.Forms.TextBox()
+        Me.StartY = New System.Windows.Forms.TextBox()
+        Me.EndX = New System.Windows.Forms.TextBox()
+        Me.EndY = New System.Windows.Forms.TextBox()
+        Me.Label15 = New System.Windows.Forms.Label()
+        Me.Label16 = New System.Windows.Forms.Label()
+        Me.Label17 = New System.Windows.Forms.Label()
+        Me.Label18 = New System.Windows.Forms.Label()
+        Me.LineStat = New System.Windows.Forms.Label()
         Me.frmRudderTest.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
@@ -168,8 +177,7 @@ Partial Class frmSIM
         'HScrollBar3
         '
         Me.HScrollBar3.Location = New System.Drawing.Point(23, 28)
-        Me.HScrollBar3.Maximum = 369
-        Me.HScrollBar3.Minimum = 1
+        Me.HScrollBar3.Maximum = 368
         Me.HScrollBar3.Name = "HScrollBar3"
         Me.HScrollBar3.Size = New System.Drawing.Size(166, 17)
         Me.HScrollBar3.TabIndex = 10
@@ -287,7 +295,7 @@ Partial Class frmSIM
         '
         Me.CheckBox1.Appearance = System.Windows.Forms.Appearance.Button
         Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Location = New System.Drawing.Point(23, 256)
+        Me.CheckBox1.Location = New System.Drawing.Point(23, 345)
         Me.CheckBox1.Name = "CheckBox1"
         Me.CheckBox1.Size = New System.Drawing.Size(39, 23)
         Me.CheckBox1.TabIndex = 27
@@ -491,11 +499,95 @@ Partial Class frmSIM
         Me.SpeedBar1.TabIndex = 36
         Me.SpeedBar1.Value = 0
         '
+        'StartX
+        '
+        Me.StartX.Location = New System.Drawing.Point(23, 283)
+        Me.StartX.Name = "StartX"
+        Me.StartX.Size = New System.Drawing.Size(100, 20)
+        Me.StartX.TabIndex = 35
+        '
+        'StartY
+        '
+        Me.StartY.Location = New System.Drawing.Point(23, 319)
+        Me.StartY.Name = "StartY"
+        Me.StartY.Size = New System.Drawing.Size(100, 20)
+        Me.StartY.TabIndex = 36
+        '
+        'EndX
+        '
+        Me.EndX.Location = New System.Drawing.Point(162, 283)
+        Me.EndX.Name = "EndX"
+        Me.EndX.Size = New System.Drawing.Size(100, 20)
+        Me.EndX.TabIndex = 37
+        '
+        'EndY
+        '
+        Me.EndY.Location = New System.Drawing.Point(162, 319)
+        Me.EndY.Name = "EndY"
+        Me.EndY.Size = New System.Drawing.Size(100, 20)
+        Me.EndY.TabIndex = 38
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.Location = New System.Drawing.Point(20, 266)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(62, 13)
+        Me.Label15.TabIndex = 39
+        Me.Label15.Text = "Line Start X"
+        '
+        'Label16
+        '
+        Me.Label16.AutoSize = True
+        Me.Label16.Location = New System.Drawing.Point(20, 303)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(62, 13)
+        Me.Label16.TabIndex = 40
+        Me.Label16.Text = "Line Start Y"
+        '
+        'Label17
+        '
+        Me.Label17.AutoSize = True
+        Me.Label17.Location = New System.Drawing.Point(159, 266)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(59, 13)
+        Me.Label17.TabIndex = 41
+        Me.Label17.Text = "Line End X"
+        '
+        'Label18
+        '
+        Me.Label18.AutoSize = True
+        Me.Label18.Location = New System.Drawing.Point(159, 303)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(59, 13)
+        Me.Label18.TabIndex = 42
+        Me.Label18.Text = "Line End Y"
+        '
+        'LineStat
+        '
+        Me.LineStat.AutoSize = True
+        Me.LineStat.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LineStat.ForeColor = System.Drawing.Color.Red
+        Me.LineStat.Location = New System.Drawing.Point(284, 266)
+        Me.LineStat.Name = "LineStat"
+        Me.LineStat.Size = New System.Drawing.Size(44, 13)
+        Me.LineStat.TabIndex = 43
+        Me.LineStat.Text = "Offline"
+        '
         'frmSIM
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(686, 391)
+        Me.Controls.Add(Me.LineStat)
+        Me.Controls.Add(Me.Label18)
+        Me.Controls.Add(Me.Label17)
+        Me.Controls.Add(Me.Label16)
+        Me.Controls.Add(Me.Label15)
+        Me.Controls.Add(Me.EndY)
+        Me.Controls.Add(Me.EndX)
+        Me.Controls.Add(Me.StartY)
+        Me.Controls.Add(Me.StartX)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.frmRudderTest)
         Me.Controls.Add(Me.Button4)
@@ -528,6 +620,7 @@ Partial Class frmSIM
         Me.Controls.Add(Me.vCourse)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.HScrollBar1)
+        Me.MaximizeBox = False
         Me.Name = "frmSIM"
         Me.Text = "Simulator"
         Me.frmRudderTest.ResumeLayout(False)
@@ -567,7 +660,6 @@ Partial Class frmSIM
     Friend WithEvents Label11 As System.Windows.Forms.Label
     Friend WithEvents boatHeading As System.Windows.Forms.Label
     Friend WithEvents Button1 As System.Windows.Forms.Button
-    Friend WithEvents Button2 As System.Windows.Forms.Button
     Friend WithEvents Button3 As System.Windows.Forms.Button
     Friend WithEvents Button4 As System.Windows.Forms.Button
     Friend WithEvents frmRudderTest As System.Windows.Forms.GroupBox
@@ -582,4 +674,14 @@ Partial Class frmSIM
     Friend WithEvents lblSpeed As System.Windows.Forms.Label
     Friend WithEvents Label14 As System.Windows.Forms.Label
     Friend WithEvents Button6 As System.Windows.Forms.Button
+    Friend WithEvents Button2 As System.Windows.Forms.Button
+    Friend WithEvents StartX As System.Windows.Forms.TextBox
+    Friend WithEvents StartY As System.Windows.Forms.TextBox
+    Friend WithEvents EndX As System.Windows.Forms.TextBox
+    Friend WithEvents EndY As System.Windows.Forms.TextBox
+    Friend WithEvents Label15 As System.Windows.Forms.Label
+    Friend WithEvents Label16 As System.Windows.Forms.Label
+    Friend WithEvents Label17 As System.Windows.Forms.Label
+    Friend WithEvents Label18 As System.Windows.Forms.Label
+    Friend WithEvents LineStat As System.Windows.Forms.Label
 End Class
