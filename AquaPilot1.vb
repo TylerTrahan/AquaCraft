@@ -307,7 +307,7 @@ Public Class AquaPilot1
             End If
         End If
 
-        If OnLine = True And DistPoint > 10 Then
+        If OnLine = True Then
 
             If CrossTrackDist > 0 Then
                 ' calc some percentage to control the bearing change
@@ -351,6 +351,10 @@ Public Class AquaPilot1
             MySurvey1.Traverse(frmAquaPilot.MyAquaPilot.MissionPlanXY(frmAquaPilot.MyAquaPilot.MissionLine).x, frmAquaPilot.MyAquaPilot.MissionPlanXY(frmAquaPilot.MyAquaPilot.MissionLine).y, frmAquaPilot.lineBearing - 180, 100)
             Call MySurvey1.Inverse(CurrentLocation.x, CurrentLocation.y, MySurvey1.TraverseX, MySurvey1.TraverseY)
             DistPoint = MySurvey1.InverseDistance
+            ' need to see when the lead in is passed up
+            If DistPoint < 10 Then
+
+            End If
         End If
 
         OldCrossTrackDist = CrossTrackDist
