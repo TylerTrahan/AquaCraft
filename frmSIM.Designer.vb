@@ -75,6 +75,9 @@ Partial Class frmSIM
         Me.Label17 = New System.Windows.Forms.Label()
         Me.Label18 = New System.Windows.Forms.Label()
         Me.LineStat = New System.Windows.Forms.Label()
+        Me.HScrollBar4 = New System.Windows.Forms.HScrollBar()
+        Me.Label19 = New System.Windows.Forms.Label()
+        Me.vHeading = New System.Windows.Forms.Label()
         Me.frmRudderTest.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
@@ -204,7 +207,7 @@ Partial Class frmSIM
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(20, 150)
+        Me.Label6.Location = New System.Drawing.Point(21, 172)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(102, 13)
         Me.Label6.TabIndex = 15
@@ -213,7 +216,7 @@ Partial Class frmSIM
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(20, 189)
+        Me.Label7.Location = New System.Drawing.Point(21, 211)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(102, 13)
         Me.Label7.TabIndex = 16
@@ -222,7 +225,7 @@ Partial Class frmSIM
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(159, 150)
+        Me.Label8.Location = New System.Drawing.Point(160, 172)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(116, 13)
         Me.Label8.TabIndex = 19
@@ -231,7 +234,7 @@ Partial Class frmSIM
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(159, 189)
+        Me.Label9.Location = New System.Drawing.Point(160, 211)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(116, 13)
         Me.Label9.TabIndex = 20
@@ -239,7 +242,7 @@ Partial Class frmSIM
         '
         'boatX
         '
-        Me.boatX.Location = New System.Drawing.Point(23, 166)
+        Me.boatX.Location = New System.Drawing.Point(24, 188)
         Me.boatX.Name = "boatX"
         Me.boatX.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.boatX.Size = New System.Drawing.Size(100, 20)
@@ -248,7 +251,7 @@ Partial Class frmSIM
         '
         'boatY
         '
-        Me.boatY.Location = New System.Drawing.Point(23, 205)
+        Me.boatY.Location = New System.Drawing.Point(24, 227)
         Me.boatY.Name = "boatY"
         Me.boatY.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.boatY.Size = New System.Drawing.Size(100, 20)
@@ -257,7 +260,7 @@ Partial Class frmSIM
         '
         'wptX
         '
-        Me.wptX.Location = New System.Drawing.Point(162, 166)
+        Me.wptX.Location = New System.Drawing.Point(163, 188)
         Me.wptX.Name = "wptX"
         Me.wptX.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.wptX.Size = New System.Drawing.Size(100, 20)
@@ -266,7 +269,7 @@ Partial Class frmSIM
         '
         'wptY
         '
-        Me.wptY.Location = New System.Drawing.Point(162, 205)
+        Me.wptY.Location = New System.Drawing.Point(163, 227)
         Me.wptY.Name = "wptY"
         Me.wptY.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.wptY.Size = New System.Drawing.Size(100, 20)
@@ -295,7 +298,7 @@ Partial Class frmSIM
         '
         Me.CheckBox1.Appearance = System.Windows.Forms.Appearance.Button
         Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Location = New System.Drawing.Point(23, 345)
+        Me.CheckBox1.Location = New System.Drawing.Point(290, 338)
         Me.CheckBox1.Name = "CheckBox1"
         Me.CheckBox1.Size = New System.Drawing.Size(39, 23)
         Me.CheckBox1.TabIndex = 27
@@ -322,7 +325,7 @@ Partial Class frmSIM
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(23, 227)
+        Me.Button1.Location = New System.Drawing.Point(24, 249)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(52, 23)
         Me.Button1.TabIndex = 30
@@ -331,7 +334,7 @@ Partial Class frmSIM
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(73, 227)
+        Me.Button2.Location = New System.Drawing.Point(74, 249)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(52, 23)
         Me.Button2.TabIndex = 31
@@ -340,7 +343,7 @@ Partial Class frmSIM
         '
         'Button3
         '
-        Me.Button3.Location = New System.Drawing.Point(129, 227)
+        Me.Button3.Location = New System.Drawing.Point(130, 249)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(41, 23)
         Me.Button3.TabIndex = 32
@@ -349,7 +352,7 @@ Partial Class frmSIM
         '
         'Button4
         '
-        Me.Button4.Location = New System.Drawing.Point(176, 227)
+        Me.Button4.Location = New System.Drawing.Point(177, 249)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(41, 23)
         Me.Button4.TabIndex = 33
@@ -361,7 +364,7 @@ Partial Class frmSIM
         Me.frmRudderTest.Controls.Add(Me.lblAngle)
         Me.frmRudderTest.Controls.Add(Me.Button5)
         Me.frmRudderTest.Controls.Add(Me.RudderTest1)
-        Me.frmRudderTest.Location = New System.Drawing.Point(398, 9)
+        Me.frmRudderTest.Location = New System.Drawing.Point(341, 17)
         Me.frmRudderTest.Name = "frmRudderTest"
         Me.frmRudderTest.Size = New System.Drawing.Size(276, 165)
         Me.frmRudderTest.TabIndex = 34
@@ -416,9 +419,9 @@ Partial Class frmSIM
         Me.GroupBox1.Controls.Add(Me.Label12)
         Me.GroupBox1.Controls.Add(Me.SpeedBar2)
         Me.GroupBox1.Controls.Add(Me.SpeedBar1)
-        Me.GroupBox1.Location = New System.Drawing.Point(398, 180)
+        Me.GroupBox1.Location = New System.Drawing.Point(341, 188)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(276, 162)
+        Me.GroupBox1.Size = New System.Drawing.Size(276, 173)
         Me.GroupBox1.TabIndex = 3
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Motor Test"
@@ -479,7 +482,7 @@ Partial Class frmSIM
         Me.SpeedBar2.Maximum = 100
         Me.SpeedBar2.Minimum = 0
         Me.SpeedBar2.Name = "SpeedBar2"
-        Me.SpeedBar2.Size = New System.Drawing.Size(13, 98)
+        Me.SpeedBar2.Size = New System.Drawing.Size(13, 120)
         Me.SpeedBar2.Step = 5
         Me.SpeedBar2.Style = VerticalProgressBar.Styles.Solid
         Me.SpeedBar2.TabIndex = 37
@@ -493,7 +496,7 @@ Partial Class frmSIM
         Me.SpeedBar1.Maximum = 100
         Me.SpeedBar1.Minimum = 0
         Me.SpeedBar1.Name = "SpeedBar1"
-        Me.SpeedBar1.Size = New System.Drawing.Size(13, 98)
+        Me.SpeedBar1.Size = New System.Drawing.Size(13, 120)
         Me.SpeedBar1.Step = 5
         Me.SpeedBar1.Style = VerticalProgressBar.Styles.Solid
         Me.SpeedBar1.TabIndex = 36
@@ -501,28 +504,28 @@ Partial Class frmSIM
         '
         'StartX
         '
-        Me.StartX.Location = New System.Drawing.Point(23, 283)
+        Me.StartX.Location = New System.Drawing.Point(24, 305)
         Me.StartX.Name = "StartX"
         Me.StartX.Size = New System.Drawing.Size(100, 20)
         Me.StartX.TabIndex = 35
         '
         'StartY
         '
-        Me.StartY.Location = New System.Drawing.Point(23, 319)
+        Me.StartY.Location = New System.Drawing.Point(24, 341)
         Me.StartY.Name = "StartY"
         Me.StartY.Size = New System.Drawing.Size(100, 20)
         Me.StartY.TabIndex = 36
         '
         'EndX
         '
-        Me.EndX.Location = New System.Drawing.Point(162, 283)
+        Me.EndX.Location = New System.Drawing.Point(163, 305)
         Me.EndX.Name = "EndX"
         Me.EndX.Size = New System.Drawing.Size(100, 20)
         Me.EndX.TabIndex = 37
         '
         'EndY
         '
-        Me.EndY.Location = New System.Drawing.Point(162, 319)
+        Me.EndY.Location = New System.Drawing.Point(163, 341)
         Me.EndY.Name = "EndY"
         Me.EndY.Size = New System.Drawing.Size(100, 20)
         Me.EndY.TabIndex = 38
@@ -530,7 +533,7 @@ Partial Class frmSIM
         'Label15
         '
         Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(20, 266)
+        Me.Label15.Location = New System.Drawing.Point(21, 288)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(62, 13)
         Me.Label15.TabIndex = 39
@@ -539,7 +542,7 @@ Partial Class frmSIM
         'Label16
         '
         Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(20, 303)
+        Me.Label16.Location = New System.Drawing.Point(21, 325)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(62, 13)
         Me.Label16.TabIndex = 40
@@ -548,7 +551,7 @@ Partial Class frmSIM
         'Label17
         '
         Me.Label17.AutoSize = True
-        Me.Label17.Location = New System.Drawing.Point(159, 266)
+        Me.Label17.Location = New System.Drawing.Point(160, 288)
         Me.Label17.Name = "Label17"
         Me.Label17.Size = New System.Drawing.Size(59, 13)
         Me.Label17.TabIndex = 41
@@ -557,7 +560,7 @@ Partial Class frmSIM
         'Label18
         '
         Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(159, 303)
+        Me.Label18.Location = New System.Drawing.Point(160, 325)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(59, 13)
         Me.Label18.TabIndex = 42
@@ -566,19 +569,51 @@ Partial Class frmSIM
         'LineStat
         '
         Me.LineStat.AutoSize = True
+        Me.LineStat.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.LineStat.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LineStat.ForeColor = System.Drawing.Color.Red
-        Me.LineStat.Location = New System.Drawing.Point(284, 266)
+        Me.LineStat.Location = New System.Drawing.Point(246, 133)
         Me.LineStat.Name = "LineStat"
-        Me.LineStat.Size = New System.Drawing.Size(44, 13)
+        Me.LineStat.Size = New System.Drawing.Size(60, 15)
         Me.LineStat.TabIndex = 43
-        Me.LineStat.Text = "Offline"
+        Me.LineStat.Text = "OFFLINE"
+        '
+        'HScrollBar4
+        '
+        Me.HScrollBar4.Location = New System.Drawing.Point(23, 133)
+        Me.HScrollBar4.Maximum = 369
+        Me.HScrollBar4.Minimum = 1
+        Me.HScrollBar4.Name = "HScrollBar4"
+        Me.HScrollBar4.Size = New System.Drawing.Size(166, 17)
+        Me.HScrollBar4.TabIndex = 44
+        Me.HScrollBar4.Value = 1
+        '
+        'Label19
+        '
+        Me.Label19.AutoSize = True
+        Me.Label19.Location = New System.Drawing.Point(20, 117)
+        Me.Label19.Name = "Label19"
+        Me.Label19.Size = New System.Drawing.Size(81, 13)
+        Me.Label19.TabIndex = 45
+        Me.Label19.Text = "Vessel Heading"
+        '
+        'vHeading
+        '
+        Me.vHeading.AutoSize = True
+        Me.vHeading.Location = New System.Drawing.Point(100, 117)
+        Me.vHeading.Name = "vHeading"
+        Me.vHeading.Size = New System.Drawing.Size(19, 13)
+        Me.vHeading.TabIndex = 46
+        Me.vHeading.Text = "20"
         '
         'frmSIM
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(686, 391)
+        Me.ClientSize = New System.Drawing.Size(624, 367)
+        Me.Controls.Add(Me.vHeading)
+        Me.Controls.Add(Me.Label19)
+        Me.Controls.Add(Me.HScrollBar4)
         Me.Controls.Add(Me.LineStat)
         Me.Controls.Add(Me.Label18)
         Me.Controls.Add(Me.Label17)
@@ -684,4 +719,7 @@ Partial Class frmSIM
     Friend WithEvents Label17 As System.Windows.Forms.Label
     Friend WithEvents Label18 As System.Windows.Forms.Label
     Friend WithEvents LineStat As System.Windows.Forms.Label
+    Friend WithEvents HScrollBar4 As System.Windows.Forms.HScrollBar
+    Friend WithEvents Label19 As System.Windows.Forms.Label
+    Friend WithEvents vHeading As System.Windows.Forms.Label
 End Class

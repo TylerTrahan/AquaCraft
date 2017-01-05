@@ -23,10 +23,10 @@
         wptX.Text = Format(frmAquaPilot.MyAquaPilot.WaypointX, "0.00")
         wptY.Text = Format(frmAquaPilot.MyAquaPilot.WaypointY, "0.00")
         If frmAquaPilot.MyAquaPilot.OnLine = True Then
-            LineStat.Text = "Online"
+            LineStat.Text = "ONLINE"
             LineStat.ForeColor = Drawing.Color.Green
         Else
-            LineStat.Text = "Offline"
+            LineStat.Text = "OFFLINE"
             LineStat.ForeColor = Drawing.Color.Red
         End If
 
@@ -65,6 +65,8 @@
         'frmAquaPilot.MyAquaPilot.CurrentBoatY = CDbl(boatY.Text)
         'frmAquaPilot.MyAquaPilot.WaypointX = CDbl(wptX.Text)
         'frmAquaPilot.MyAquaPilot.WaypointY = CDbl(wptY.Text)
+        boatHeading.Text = frmAquaPilot.MyAquaPilot.CurrentBoatHeading
+        vHeading.Text = boatHeading.Text
         boatX.Text = frmAquaPilot.MyAquaPilot.CurrentBoatX
         boatY.Text = frmAquaPilot.MyAquaPilot.CurrentBoatY
         wptX.Text = frmAquaPilot.MyAquaPilot.WaypointX
@@ -177,5 +179,10 @@
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
         boatY.Text = CInt(Val(boatY.Text) - 5)
         frmAquaPilot.currentBoatXY.y = Val(boatY.Text)
+    End Sub
+
+    Private Sub HScrollBar4_Scroll(sender As Object, e As System.Windows.Forms.ScrollEventArgs) Handles HScrollBar4.Scroll
+        frmAquaPilot.MyAquaPilot.CurrentBoatHeading = HScrollBar4.Value
+        vHeading.Text = boatHeading.Text
     End Sub
 End Class

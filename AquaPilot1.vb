@@ -264,6 +264,10 @@ Public Class AquaPilot1
         Static ResetFlag As Boolean
         Dim DiffBearing As Double
 
+        ' drive by the points list
+        ' figure out when the boat has reached a waypoint
+        ' have to monitor boat heading to determine behavior
+
         DiffBearing = (frmAquaPilot.lineBearing + 360) - (CurrentBoatCourse + 360)
         If DiffBearing > 180 Then
             DiffBearing = DiffBearing - 360
@@ -291,24 +295,23 @@ Public Class AquaPilot1
         Debug.WriteLine(MinBrng)
         If MinBrng > MaxBrng Then
             If (frmAquaPilot.lineBearing + 360) < MinBrng And (frmAquaPilot.lineBearing + 360) > MaxBrng Then
-                ' line started
+                ' line not started
                 OnLine = False
             Else
-                ' line not started
+                ' line started
                 OnLine = True
             End If
         ElseIf MaxBrng > MinBrng Then
             If (frmAquaPilot.lineBearing + 360) < MaxBrng And (frmAquaPilot.lineBearing + 360) > MinBrng Then
-                ' line started
+                ' line not started
                 OnLine = False
             Else
-                ' line not started
+                ' line started
                 OnLine = True
             End If
         End If
 
         If OnLine = True Then
-
             If CrossTrackDist > 0 Then
                 ' calc some percentage to control the bearing change
                 If CrossTrackDist > 90 Then
@@ -353,6 +356,7 @@ Public Class AquaPilot1
             DistPoint = MySurvey1.InverseDistance
             ' need to see when the lead in is passed up
             If DistPoint < 10 Then
+                ' figure out when the boat has passed the leadin 
 
             End If
         End If
