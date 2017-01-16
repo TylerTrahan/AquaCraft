@@ -134,24 +134,19 @@ Public Class frmAquaPilot
         If gpsOpen Then
             Try
                 gpsreadBuffer = GPSComm.ReadLine()
-                MyAquaPilot.MySurvey1.parseNmea(gpsreadBuffer)
+                Invoke(New EventHandler(AddressOf DoUpdate))
                 MyAquaPilot.CurrentBoatLat = MyAquaPilot.MySurvey1.NmeaInfo.gga.lat
                 MyAquaPilot.CurrentBoatLon = MyAquaPilot.MySurvey1.NmeaInfo.gga.lon
                 MyAquaPilot.CurrentBoatCourse = MyAquaPilot.MySurvey1.NmeaInfo.vtg.cogt
                 MyAquaPilot.CurrentBoatSpeed = MyAquaPilot.MySurvey1.NmeaInfo.vtg.SpeedKt
 
-                'data to UI thread 
-                Me.Invoke(New EventHandler(AddressOf DoUpdate))
             Catch ex As Exception
                 MsgBox("read " & ex.Message)
             End Try
         End If
     End Sub
 
-    ''' <summary> 
-    ''' update received string in UI 
-    ''' </summary> 
-    Public Sub DoUpdate(ByVal sender As Object, ByVal e As System.EventArgs)
+    Public Sub DoUpdate(ByVal sender As Object, ByVal e As EventArgs)
         MyAquaPilot.MySurvey1.parseNmea(gpsreadBuffer)
     End Sub
 
@@ -253,7 +248,7 @@ Public Class frmAquaPilot
                 End If
                 'Debug.Print(structX.packetType)
 
-                Me.Invoke(New EventHandler(AddressOf DoUpdate))
+                'Me.Invoke(New EventHandler(AddressOf DoUpdate))
             Catch ex As Exception
                 'MsgBox(ex.Message)
             End Try
