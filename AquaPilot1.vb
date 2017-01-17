@@ -287,6 +287,7 @@ Public Class AquaPilot1
         ElseIf DiffHeading < -180 Then
             DiffHeading = DiffHeading + 360
         End If
+        Debug.WriteLine("DiffHeading = " & DiffHeading)
 
         If NewBearing = Nothing Then
             NewBearing = frmAquaPilot.lineBearing
