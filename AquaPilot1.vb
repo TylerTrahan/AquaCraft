@@ -263,18 +263,30 @@ Public Class AquaPilot1
         Dim MinBrng As Double
         Static ResetFlag As Boolean
         Dim DiffBearing As Double
+        Dim DiffHeading As Double
 
         ' drive by the points list
         ' figure out when the boat has reached a waypoint
         ' have to monitor boat heading to determine behavior
 
+        ' DiffBearing is the difference between the current boat course and the line bearing
+        ' This helps determine how agressive the boat needs to turn to get on line and course
         DiffBearing = (frmAquaPilot.lineBearing + 360) - (CurrentBoatCourse + 360)
+        ' Normalize DiffBearing to the nearest directional angle to approach the lineBearing
         If DiffBearing > 180 Then
             DiffBearing = DiffBearing - 360
         ElseIf DiffBearing < -180 Then
             DiffBearing = DiffBearing + 360
         End If
         Debug.WriteLine("DiffBearing = " & DiffBearing)
+
+        DiffHeading = (frmAquaPilot.lineBearing + 360) - (CurrentBoatHeading + 360)
+        ' Normalize DiffHeading to the nearest directional angle to approach the lineBearing
+        If DiffHeading > 180 Then
+            DiffHeading = DiffHeading - 360
+        ElseIf DiffHeading < -180 Then
+            DiffHeading = DiffHeading + 360
+        End If
 
         If NewBearing = Nothing Then
             NewBearing = frmAquaPilot.lineBearing
