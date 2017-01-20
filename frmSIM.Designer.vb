@@ -78,8 +78,12 @@ Partial Class frmSIM
         Me.HScrollBar4 = New System.Windows.Forms.HScrollBar()
         Me.Label19 = New System.Windows.Forms.Label()
         Me.vHeading = New System.Windows.Forms.Label()
+        Me.Deploy1 = New System.Windows.Forms.GroupBox()
+        Me.RadioButton1 = New System.Windows.Forms.RadioButton()
+        Me.RadioButton2 = New System.Windows.Forms.RadioButton()
         Me.frmRudderTest.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
+        Me.Deploy1.SuspendLayout()
         Me.SuspendLayout()
         '
         'Timer1
@@ -421,7 +425,7 @@ Partial Class frmSIM
         Me.GroupBox1.Controls.Add(Me.SpeedBar1)
         Me.GroupBox1.Location = New System.Drawing.Point(341, 188)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(276, 173)
+        Me.GroupBox1.Size = New System.Drawing.Size(170, 173)
         Me.GroupBox1.TabIndex = 3
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Motor Test"
@@ -430,7 +434,7 @@ Partial Class frmSIM
         '
         Me.lblSpeed.AutoSize = True
         Me.lblSpeed.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblSpeed.Location = New System.Drawing.Point(156, 110)
+        Me.lblSpeed.Location = New System.Drawing.Point(104, 120)
         Me.lblSpeed.Name = "lblSpeed"
         Me.lblSpeed.Size = New System.Drawing.Size(28, 13)
         Me.lblSpeed.TabIndex = 42
@@ -440,7 +444,7 @@ Partial Class frmSIM
         '
         Me.Label14.AutoSize = True
         Me.Label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label14.Location = New System.Drawing.Point(125, 86)
+        Me.Label14.Location = New System.Drawing.Point(77, 100)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(83, 13)
         Me.Label14.TabIndex = 41
@@ -448,7 +452,7 @@ Partial Class frmSIM
         '
         'Button6
         '
-        Me.Button6.Location = New System.Drawing.Point(133, 25)
+        Me.Button6.Location = New System.Drawing.Point(85, 25)
         Me.Button6.Name = "Button6"
         Me.Button6.Size = New System.Drawing.Size(75, 52)
         Me.Button6.TabIndex = 40
@@ -606,11 +610,47 @@ Partial Class frmSIM
         Me.vHeading.TabIndex = 46
         Me.vHeading.Text = "20"
         '
+        'Deploy1
+        '
+        Me.Deploy1.Controls.Add(Me.RadioButton2)
+        Me.Deploy1.Controls.Add(Me.RadioButton1)
+        Me.Deploy1.Location = New System.Drawing.Point(517, 188)
+        Me.Deploy1.Name = "Deploy1"
+        Me.Deploy1.Size = New System.Drawing.Size(100, 173)
+        Me.Deploy1.TabIndex = 47
+        Me.Deploy1.TabStop = False
+        Me.Deploy1.Text = "Deployment"
+        '
+        'RadioButton1
+        '
+        Me.RadioButton1.Appearance = System.Windows.Forms.Appearance.Button
+        Me.RadioButton1.AutoSize = True
+        Me.RadioButton1.Checked = True
+        Me.RadioButton1.Location = New System.Drawing.Point(5, 47)
+        Me.RadioButton1.Name = "RadioButton1"
+        Me.RadioButton1.Size = New System.Drawing.Size(62, 23)
+        Me.RadioButton1.TabIndex = 1
+        Me.RadioButton1.TabStop = True
+        Me.RadioButton1.Text = "Sonar Up"
+        Me.RadioButton1.UseVisualStyleBackColor = True
+        '
+        'RadioButton2
+        '
+        Me.RadioButton2.Appearance = System.Windows.Forms.Appearance.Button
+        Me.RadioButton2.AutoSize = True
+        Me.RadioButton2.Location = New System.Drawing.Point(5, 98)
+        Me.RadioButton2.Name = "RadioButton2"
+        Me.RadioButton2.Size = New System.Drawing.Size(76, 23)
+        Me.RadioButton2.TabIndex = 2
+        Me.RadioButton2.Text = "Sonar Down"
+        Me.RadioButton2.UseVisualStyleBackColor = True
+        '
         'frmSIM
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(624, 367)
+        Me.ClientSize = New System.Drawing.Size(721, 367)
+        Me.Controls.Add(Me.Deploy1)
         Me.Controls.Add(Me.vHeading)
         Me.Controls.Add(Me.Label19)
         Me.Controls.Add(Me.HScrollBar4)
@@ -662,6 +702,8 @@ Partial Class frmSIM
         Me.frmRudderTest.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        Me.Deploy1.ResumeLayout(False)
+        Me.Deploy1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -722,4 +764,7 @@ Partial Class frmSIM
     Friend WithEvents HScrollBar4 As System.Windows.Forms.HScrollBar
     Friend WithEvents Label19 As System.Windows.Forms.Label
     Friend WithEvents vHeading As System.Windows.Forms.Label
+    Friend WithEvents Deploy1 As System.Windows.Forms.GroupBox
+    Friend WithEvents RadioButton2 As System.Windows.Forms.RadioButton
+    Friend WithEvents RadioButton1 As System.Windows.Forms.RadioButton
 End Class

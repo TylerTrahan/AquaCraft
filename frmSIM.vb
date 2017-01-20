@@ -185,4 +185,32 @@
         frmAquaPilot.MyAquaPilot.CurrentBoatHeading = HScrollBar4.Value
         vHeading.Text = boatHeading.Text
     End Sub
+
+    Private Sub RadioButton1_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton1.CheckedChanged
+    End Sub
+
+    Private Sub RadioButton2_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton2.CheckedChanged
+    End Sub
+
+    Private Sub RadioButton1_Click(sender As Object, e As EventArgs) Handles RadioButton1.Click
+        If RadioButton1.Checked = True Then
+            If frmAquaPilot.sonarOpen = True Then
+                'frmAquaPilot.SonarComm.WriteLine("PM2" & vbCr)
+                frmAquaPilot.SonarComm.WriteLine("VE0.25" & vbCr)
+                frmAquaPilot.SonarComm.WriteLine("DI-360000" & vbCr)
+                frmAquaPilot.SonarComm.WriteLine("FL" & vbCr)
+            End If
+        End If
+    End Sub
+
+    Private Sub RadioButton2_Click(sender As Object, e As EventArgs) Handles RadioButton2.Click
+        If RadioButton2.Checked = True Then
+            If frmAquaPilot.sonarOpen = True Then
+                'frmAquaPilot.SonarComm.WriteLine("PM2" & vbCr)
+                frmAquaPilot.SonarComm.WriteLine("VE0.25" & vbCr)
+                frmAquaPilot.SonarComm.WriteLine("DI360000" & vbCr)
+                frmAquaPilot.SonarComm.WriteLine("FL" & vbCr)
+            End If
+        End If
+    End Sub
 End Class

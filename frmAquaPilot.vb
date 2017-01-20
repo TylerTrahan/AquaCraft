@@ -8,6 +8,8 @@ Public Class frmAquaPilot
     Dim gpsOpen As Boolean
     Dim gpsreadBuffer As String
     Dim hdtOpen As Boolean
+    Public sonarOpen As Boolean
+    Public sonarreadBuffer As String
     Dim frmHWration As Double
     Dim lineIndex As Integer
     Dim slineArray() As Survey1.DoubleXY
@@ -72,26 +74,26 @@ Public Class frmAquaPilot
     Private Function InitializePorts() As Boolean
         'Dim comOpen As Boolean
 
-        '        With GPSComm
-        '        .ParityReplace = &H3B                    ' replace ";" when parity error occurs 
-        '        .PortName = "COM3"
-        '        .BaudRate = "9600"
-        '        .Parity = IO.Ports.Parity.None
-        '        .DataBits = 8
-        '        .StopBits = IO.Ports.StopBits.One
-        '        .Handshake = IO.Ports.Handshake.None
-        '        .RtsEnable = False
-        '        .ReceivedBytesThreshold = 1             'threshold: one byte in buffer > event is fired 
-        '        .NewLine = vbCr         ' CR must be the last char in frame. This terminates the SerialPort.readLine 
-        '        .ReadTimeout = 10000
-        '        End With
-        '        Try
-        '        GPSComm.Open()
-        '        gpsOpen = GPSComm.IsOpen
-        '        Catch ex As Exception
-        '        gpsOpen = False
-        '        MsgBox("Error Open: " & ex.Message)
-        '        End Try
+        With GPSComm
+            .ParityReplace = &H3B                    ' replace ";" when parity error occurs 
+            .PortName = "COM3"
+            .BaudRate = "9600"
+            .Parity = IO.Ports.Parity.None
+            .DataBits = 8
+            .StopBits = IO.Ports.StopBits.One
+            .Handshake = IO.Ports.Handshake.None
+            .RtsEnable = False
+            .ReceivedBytesThreshold = 1             'threshold: one byte in buffer > event is fired 
+            .NewLine = vbCr         ' CR must be the last char in frame. This terminates the SerialPort.readLine 
+            .ReadTimeout = 10000
+        End With
+        Try
+            GPSComm.Open()
+            gpsOpen = GPSComm.IsOpen
+        Catch ex As Exception
+            gpsOpen = False
+            MsgBox("Error Open: " & ex.Message)
+        End Try
 
         With HDTComm
             .ParityReplace = &H3B                    ' replace ";" when parity error occurs 
@@ -117,7 +119,28 @@ Public Class frmAquaPilot
             MsgBox("Error Open: " & ex.Message)
         End Try
 
-        If hdtOpen = True Then ' add more checks as ports are added to function
+        With SonarComm
+            .ParityReplace = &H3B                    ' replace ";" when parity error occurs 
+            .PortName = "COM5" 'frmGYRO.btnCom.Text
+            .BaudRate = "9600" 'frmGYRO.btnBaud.Text
+            .Parity = IO.Ports.Parity.None
+            .DataBits = 8
+            .StopBits = IO.Ports.StopBits.One
+            .Handshake = IO.Ports.Handshake.None
+            .RtsEnable = False
+            .ReceivedBytesThreshold = 1             'threshold: one byte in buffer > event is fired 
+            .NewLine = vbCr         ' CR must be the last char in frame. This terminates the SerialPort.readLine 
+            .ReadTimeout = 10000
+        End With
+        Try
+            SonarComm.Open()
+            sonarOpen = SonarComm.IsOpen
+        Catch ex As Exception
+            sonarOpen = False
+            MsgBox("Error Open: " & ex.Message)
+        End Try
+
+        If sonarOpen = True Then ' add more checks as ports are added to function
             InitializePorts = True
         Else
             InitializePorts = False
@@ -140,6 +163,19 @@ Public Class frmAquaPilot
                 MyAquaPilot.CurrentBoatCourse = MyAquaPilot.MySurvey1.NmeaInfo.vtg.cogt
                 MyAquaPilot.CurrentBoatSpeed = MyAquaPilot.MySurvey1.NmeaInfo.vtg.SpeedKt
 
+            Catch ex As Exception
+                MsgBox("read " & ex.Message)
+            End Try
+        End If
+    End Sub
+
+    Private Sub SonarComm_DataReceived(sender As Object, e As SerialDataReceivedEventArgs) Handles SonarComm.DataReceived
+        'Dim InString As String
+        'InString = SonarComm.ReadLine()
+        If sonarOpen Then
+            Try
+                sonarreadBuffer = SonarComm.ReadLine()
+                Debug.WriteLine(sonarreadBuffer)
             Catch ex As Exception
                 MsgBox("read " & ex.Message)
             End Try
@@ -211,6 +247,10 @@ Public Class frmAquaPilot
         If hdtOpen Then
             HDTComm.DiscardInBuffer()
             HDTComm.Close()
+        End If
+        If sonarOpen Then
+            SonarComm.DiscardInBuffer()
+            SonarComm.Close()
         End If
         End
     End Sub

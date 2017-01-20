@@ -41,6 +41,7 @@ Partial Class frmAquaPilot
         Me.btnExit = New System.Windows.Forms.Button()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.SpeedGauge = New AquaControls.AquaGauge()
+        Me.SonarComm = New System.IO.Ports.SerialPort(Me.components)
         Me.Panel2.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -237,12 +238,16 @@ Partial Class frmAquaPilot
         Me.SpeedGauge.Name = "SpeedGauge"
         Me.SpeedGauge.NoOfDivisions = 4
         Me.SpeedGauge.NoOfSubDivisions = 2
-        Me.SpeedGauge.RecommendedValue = 20.0!
+        Me.SpeedGauge.RecommendedValue = 360.0!
         Me.SpeedGauge.Size = New System.Drawing.Size(136, 136)
         Me.SpeedGauge.TabIndex = 28
         Me.SpeedGauge.ThresholdPercent = 0!
         Me.SpeedGauge.ToAngle = 360.0!
         Me.SpeedGauge.Value = 0!
+        '
+        'SonarComm
+        '
+        Me.SonarComm.PortName = "COM5"
         '
         'frmAquaPilot
         '
@@ -299,4 +304,5 @@ Partial Class frmAquaPilot
     Friend WithEvents btnExit As System.Windows.Forms.Button
     Friend WithEvents ToolTip1 As System.Windows.Forms.ToolTip
     Friend WithEvents SpeedGauge As AquaControls.AquaGauge
+    Friend WithEvents SonarComm As IO.Ports.SerialPort
 End Class
